@@ -1,0 +1,11 @@
+{
+  "name": "inksy-server",
+  "version": "1.0.0",
+  "description": "Inksy backend — Express + Socket.io",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch index.js"
+  },
+  "license": "ISC"
+}
