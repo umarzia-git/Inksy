@@ -47,12 +47,13 @@
 
 ## Current status
 - [x] Project scaffold (git init, docs)
-- [ ] Full client/server scaffold
-- [ ] Express + Socket.io server
-- [ ] MySQL + MongoDB connections
-- [ ] Home + lobby screen
-- [ ] Socket.io room system
-- [ ] Game screen layout
-- [ ] Drawing canvas
-- [ ] Game logic (word system, guessing, scoring, rounds, reconnection, reactions)
-- [ ] Mobile fixes
+- [x] Full client/server scaffold
+- [x] Express + Socket.io server
+- [x] MySQL + MongoDB connections
+- [x] Home + lobby screen
+- [x] Socket.io room system
+- [x] Game screen layout
+- [x] Drawing canvas
+- [x] Game logic (word system, guessing, scoring, rounds, reactions)
+- [ ] Reconnection system (rejoin-and-restore within 30s — currently only a minimal drawer-disconnect turn-skip exists)
+- [ ] Mobile fixes (beyond the keyboard-safe layout already built in Step 8)
