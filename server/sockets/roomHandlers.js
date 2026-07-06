@@ -2,6 +2,9 @@ import crypto from 'node:crypto'
 import { SOCKET_EVENTS } from '../utils/socketEvents.js'
 import { createRoom, joinRoom, removePlayer, getRoomByCode } from '../services/roomService.js'
 import { isValidNickname, isValidAvatar, isValidRoomCode, isValidSettings } from '../utils/validators.js'
+import { endTurn } from '../services/gameStateMachine.js'
+import { setRoomTimer } from '../services/timerService.js'
+import { DRAWER_DISCONNECT_SKIP_MS } from '../utils/gameConstants.js'
 
 function toPublicRoom(room) {
   return {
@@ -82,11 +85,28 @@ export function registerRoomHandlers(io, socket, withErrorHandling) {
       if (!roomCode || !playerId) return
 
       const room = await getRoomByCode(roomCode)
-      if (!room || room.status !== 'lobby') return // in-game disconnects are handled by reconnection logic (Step 11)
+      if (!room) return
 
-      const updated = await removePlayer(roomCode, playerId)
-      if (updated) {
-        io.to(roomCode).emit(SOCKET_EVENTS.PLAYER_LEFT, { room: toPublicRoom(updated) })
+      // Before a game exists (or after it's over), a disconnect just frees the seat.
+      if (room.status === 'lobby' || room.status === 'game_end') {
+        const updated = await removePlayer(roomCode, playerId)
+        if (updated) io.to(roomCode).emit(SOCKET_EVENTS.PLAYER_LEFT, { room: toPublicRoom(updated) })
+        return
+      }
+
+      // Mid-game: keep their seat/score (full rejoin-and-restore is Step 11's job),
+      // but don't let a vanished drawer stall the round forever.
+      const player = room.players.find((p) => p.player_id === playerId)
+      if (player) {
+        player.connected = false
+        player.disconnected_at = new Date()
+        await room.save()
+      }
+
+      const isDrawer = room.game_state.current_drawer_player_id === playerId
+      const isDrawerTurn = room.status === 'word_select' || room.status === 'drawing'
+      if (isDrawer && isDrawerTurn) {
+        setRoomTimer(roomCode, 'drawerDisconnectSkip', () => endTurn(io, roomCode, 'drawer_disconnected'), DRAWER_DISCONNECT_SKIP_MS)
       }
     }),
   )

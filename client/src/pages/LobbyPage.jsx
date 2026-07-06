@@ -1,29 +1,35 @@
-import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useSocket } from '../hooks/useSocket.js'
 import { useRoom } from '../hooks/useRoom.js'
+import { SOCKET_EVENTS } from '../utils/socketEvents.js'
 import RoomCodeShare from '../components/lobby/RoomCodeShare.jsx'
 import PlayerList from '../components/lobby/PlayerList.jsx'
 
 function LobbyPage() {
   const { code } = useParams()
+  const navigate = useNavigate()
   const { socket } = useSocket()
   const { state, dispatch } = useRoom()
-  const [startNote, setStartNote] = useState(false)
 
   useEffect(() => {
     function handleRoomUpdate({ room }) {
       dispatch({ type: 'SET_PLAYERS', players: room.players })
     }
+    function handleGameStart() {
+      navigate(`/room/${code}/game`)
+    }
 
     socket.on('player:joined', handleRoomUpdate)
     socket.on('player:left', handleRoomUpdate)
+    socket.on(SOCKET_EVENTS.GAME_START, handleGameStart)
 
     return () => {
       socket.off('player:joined', handleRoomUpdate)
       socket.off('player:left', handleRoomUpdate)
+      socket.off(SOCKET_EVENTS.GAME_START, handleGameStart)
     }
-  }, [socket, dispatch])
+  }, [socket, dispatch, navigate, code])
 
   if (!state.self || state.roomCode !== code) {
     return (
@@ -56,7 +62,7 @@ function LobbyPage() {
           <button
             type="button"
             disabled={!canStart}
-            onClick={() => setStartNote(true)}
+            onClick={() => socket.emit(SOCKET_EVENTS.GAME_START, { roomCode: code })}
             className="w-full rounded-lg bg-ink-coral px-6 py-3 font-heading text-lg text-ink-bg transition disabled:opacity-40"
           >
             Start Game
@@ -65,13 +71,6 @@ function LobbyPage() {
           <p className="text-ink-text/70">Waiting for the host to start the game…</p>
         )}
         {isHost && !canStart && <p className="text-sm text-ink-text/60">Need at least 2 players to start.</p>}
-        {startNote && <p className="text-sm text-ink-text/60">Game logic arrives in Step 10.</p>}
-
-        {/* Temporary until Step 10 wires a synchronized game:start — lets any
-            player preview the game screen (and its canvas) individually. */}
-        <Link to={`/room/${code}/game`} className="text-sm text-ink-text/50 underline">
-          Preview game screen
-        </Link>
       </div>
     </div>
   )

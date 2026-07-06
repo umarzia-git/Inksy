@@ -27,7 +27,9 @@ function PlayerSidebar({ players, compact = false }) {
       {players.map((player) => (
         <li key={player.player_id} className="flex items-center gap-3 rounded-lg bg-white/5 px-3 py-2">
           <span className="text-xl">{player.avatar}</span>
-          <span className="flex-1 truncate text-sm">{player.nickname}</span>
+          <span className={`flex-1 truncate text-sm ${player.status === 'guessed' ? 'font-semibold text-green-400' : ''}`}>
+            {player.nickname}
+          </span>
           <span className="text-sm font-semibold text-ink-yellow">{player.score}</span>
           <span className="text-xs text-ink-text/50">{STATUS_LABEL[player.status] || ''}</span>
         </li>

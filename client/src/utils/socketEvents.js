@@ -20,6 +20,7 @@ export const SOCKET_EVENTS = {
 
   WORD_CHOICES: 'word:choices',
   WORD_HINT: 'word:hint',
+  WORD_REVEAL: 'word:reveal',
 
   REACTION_SEND: 'reaction:send',
 }

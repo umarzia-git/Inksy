@@ -1,1 +1,14 @@
 export const MAX_PLAYERS_PER_ROOM = 8
+
+export const WORD_SELECT_DURATION_MS = 15000
+export const SCOREBOARD_DURATION_MS = 5000
+
+export const MAX_GUESS_POINTS = 300
+export const MIN_GUESS_POINTS = 50
+export const DRAWER_POINTS_PER_GUESSER = 10
+export const DRAWER_ALL_GUESSED_BONUS = 50
+
+export const HINT_1_FRACTION = 0.6
+export const HINT_2_FRACTION = 0.7
+
+export const DRAWER_DISCONNECT_SKIP_MS = 15000
