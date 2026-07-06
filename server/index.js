@@ -4,6 +4,8 @@ import cors from 'cors'
 import { Server } from 'socket.io'
 
 import { env } from './config/env.js'
+import { connectMysql } from './config/mysql.js'
+import { connectMongo } from './config/mongo.js'
 import { healthRouter } from './routes/health.js'
 import { errorHandler } from './middleware/errorHandler.js'
 import { attachSocketHandlers } from './sockets/index.js'
@@ -23,6 +25,20 @@ const io = new Server(httpServer, {
 })
 
 attachSocketHandlers(io)
+
+try {
+  await connectMysql()
+  logger.info('MySQL connected')
+} catch (err) {
+  logger.error('MySQL connection failed:', err)
+}
+
+try {
+  await connectMongo()
+  logger.info('MongoDB connected')
+} catch (err) {
+  logger.error('MongoDB connection failed:', err)
+}
 
 httpServer.listen(env.port, () => {
   logger.info(`Inksy server listening on port ${env.port}`)
