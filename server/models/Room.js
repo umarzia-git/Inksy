@@ -69,6 +69,7 @@ const roomSchema = new Schema(
       turn_started_at: { type: Date, default: null },
       turn_ends_at: { type: Date, default: null },
       correct_guessers: { type: [String], default: [] },
+      used_words: { type: [String], default: [] }, // offered this game, excluded from future picks to avoid repeats
     },
     canvas_strokes: { type: [strokeSchema], default: [] },
     chat_log: { type: [chatMessageSchema], default: [] },

@@ -76,7 +76,8 @@ export async function startTurn(io, roomCode) {
 
   room.status = 'word_select'
   room.game_state.current_drawer_player_id = drawerId
-  room.game_state.word_choices = await pickWordChoices(room.settings.difficulty)
+  room.game_state.word_choices = await pickWordChoices(room.settings.difficulty, room.game_state.used_words)
+  room.game_state.used_words = [...room.game_state.used_words, ...room.game_state.word_choices]
   room.game_state.current_word = null
   room.game_state.word_length = 0
   room.game_state.revealed_indices = []
