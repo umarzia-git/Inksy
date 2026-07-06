@@ -1,10 +1,14 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import TopBar from '../components/game/TopBar.jsx'
 import WordDisplay from '../components/game/WordDisplay.jsx'
 import PlayerSidebar from '../components/game/PlayerSidebar.jsx'
 import ChatPanel from '../components/chat/ChatPanel.jsx'
 import GuessInput from '../components/chat/GuessInput.jsx'
+import Toolbar from '../components/canvas/Toolbar.jsx'
+import DrawingCanvas from '../components/canvas/DrawingCanvas.jsx'
+import { useSocket } from '../hooks/useSocket.js'
+import { useRoom } from '../hooks/useRoom.js'
 
 // Demo data — real player/game state arrives with the game logic in Step 10.
 const DEMO_PLAYERS = [
@@ -15,7 +19,17 @@ const DEMO_PLAYERS = [
 
 function GamePage() {
   const { code } = useParams()
+  const { socket } = useSocket()
+  const { state } = useRoom()
   const [chatOpen, setChatOpen] = useState(false)
+
+  const [tool, setTool] = useState('pencil')
+  const [color, setColor] = useState('#000000')
+  const [brushSize, setBrushSize] = useState(6)
+  const [strokeCount, setStrokeCount] = useState(0)
+  const canvasRef = useRef(null)
+
+  const playerId = state.self?.playerId || 'anonymous'
 
   return (
     <div className="flex h-dvh flex-col md:grid md:grid-cols-[240px_1fr_320px] md:grid-rows-[auto_auto_1fr]">
@@ -43,8 +57,29 @@ function GamePage() {
         <div className="shrink-0 border-b border-white/10 p-2 md:hidden">
           <PlayerSidebar players={DEMO_PLAYERS} compact />
         </div>
-        <div className="m-2 flex min-h-0 flex-1 items-center justify-center rounded-lg bg-ink-canvas text-ink-bg/40">
-          Canvas — Step 9
+        <Toolbar
+          tool={tool}
+          onToolChange={setTool}
+          color={color}
+          onColorChange={setColor}
+          brushSize={brushSize}
+          onBrushSizeChange={setBrushSize}
+          onUndo={() => canvasRef.current?.undo()}
+          onClear={() => canvasRef.current?.clear()}
+          canUndo={strokeCount > 0}
+        />
+        <div className="m-2 min-h-0 flex-1 overflow-hidden rounded-lg bg-ink-canvas">
+          <DrawingCanvas
+            ref={canvasRef}
+            roomCode={code}
+            playerId={playerId}
+            socket={socket}
+            tool={tool}
+            color={color}
+            brushSize={brushSize}
+            initialStrokes={state.canvasStrokes}
+            onStrokeCountChange={setStrokeCount}
+          />
         </div>
       </main>
 

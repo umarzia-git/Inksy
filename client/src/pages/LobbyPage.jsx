@@ -66,6 +66,12 @@ function LobbyPage() {
         )}
         {isHost && !canStart && <p className="text-sm text-ink-text/60">Need at least 2 players to start.</p>}
         {startNote && <p className="text-sm text-ink-text/60">Game logic arrives in Step 10.</p>}
+
+        {/* Temporary until Step 10 wires a synchronized game:start — lets any
+            player preview the game screen (and its canvas) individually. */}
+        <Link to={`/room/${code}/game`} className="text-sm text-ink-text/50 underline">
+          Preview game screen
+        </Link>
       </div>
     </div>
   )

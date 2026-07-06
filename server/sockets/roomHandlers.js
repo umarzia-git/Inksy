@@ -18,6 +18,15 @@ function toPublicRoom(room) {
       connected: p.connected,
       status: p.status,
     })),
+    canvas_strokes: room.canvas_strokes.map((s) => ({
+      type: s.type,
+      tool: s.tool,
+      color: s.color,
+      size: s.size,
+      points: s.points,
+      playerId: s.playerId,
+      ts: s.ts,
+    })),
   }
 }
 

@@ -5,6 +5,7 @@ const initialState = {
   settings: null,
   players: [],
   self: null, // { playerId, nickname, avatar }
+  canvasStrokes: [],
 }
 
 function roomReducer(state, action) {
@@ -15,6 +16,8 @@ function roomReducer(state, action) {
       return { ...state, players: action.players }
     case 'SET_SELF':
       return { ...state, self: action.self }
+    case 'SET_CANVAS_STROKES':
+      return { ...state, canvasStrokes: action.strokes }
     case 'RESET':
       return initialState
     default:

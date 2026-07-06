@@ -38,6 +38,7 @@ function JoinRoomPage() {
         dispatch({ type: 'SET_ROOM', roomCode: response.room.room_code, settings: response.room.settings })
         dispatch({ type: 'SET_PLAYERS', players: response.room.players })
         dispatch({ type: 'SET_SELF', self: { playerId: response.playerId, ...profile } })
+        dispatch({ type: 'SET_CANVAS_STROKES', strokes: response.room.canvas_strokes || [] })
         navigate(`/room/${response.room.room_code}/lobby`)
       })
   }
