@@ -12,7 +12,7 @@ import { attachSocketHandlers } from './sockets/index.js'
 import { logger } from './utils/logger.js'
 
 const app = express()
-app.use(cors({ origin: env.clientUrl }))
+app.use(cors({ origin: env.corsOrigin }))
 app.use(express.json())
 
 app.use('/api/health', healthRouter)
@@ -21,7 +21,7 @@ app.use(errorHandler)
 
 const httpServer = createServer(app)
 const io = new Server(httpServer, {
-  cors: { origin: env.clientUrl },
+  cors: { origin: env.corsOrigin },
 })
 
 attachSocketHandlers(io)
