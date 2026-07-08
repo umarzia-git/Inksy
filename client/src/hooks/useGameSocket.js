@@ -15,6 +15,7 @@ const initialState = {
   winner: null,
   chatMessages: [],
   reactions: [],
+  lastCorrectGuess: null, // { playerId, id } — id makes every event unique so a UI flash can retrigger
 }
 
 function reducer(state, action) {
@@ -51,6 +52,9 @@ function reducer(state, action) {
         ...state,
         chatMessages: [...state.chatMessages, entry],
         hasGuessedCorrectly: state.hasGuessedCorrectly || (action.correct && action.payload.playerId === action.selfId),
+        lastCorrectGuess: action.correct
+          ? { playerId: action.payload.playerId, id: `${Date.now()}-${Math.random()}` }
+          : state.lastCorrectGuess,
       }
     }
     case 'ROUND_END':
@@ -68,8 +72,49 @@ function reducer(state, action) {
   }
 }
 
-export function useGameSocket({ socket, roomCode, playerId, dispatchRoom }) {
+export function useGameSocket({ socket, roomCode, playerId, dispatchRoom, initialSnapshot }) {
   const [state, localDispatch] = useReducer(reducer, initialState)
+
+  // Priming for a player who joined while a game was already in progress —
+  // seeds phase/drawer/word-pattern from the snapshot handed back by room:join
+  // instead of leaving the client stuck on the 'lobby' default.
+  useEffect(() => {
+    if (!initialSnapshot) return
+    localDispatch({ type: 'ROUND_START', payload: initialSnapshot })
+    dispatchRoom({ type: 'SET_PLAYERS', players: initialSnapshot.players })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // Always re-sync once on mount, independent of the above. A round:start
+  // broadcast can fire the instant game:start does — before this component
+  // has necessarily finished mounting and attaching its listeners — so relying
+  // on that broadcast alone is a race. This closes it: the server hands back
+  // the true current state on request, after our listeners are guaranteed attached.
+  useEffect(() => {
+    if (!socket || !roomCode) return
+    socket.timeout(3000).emit('game:sync', { roomCode }, (err, res) => {
+      if (err || !res?.snapshot) return
+      localDispatch({ type: 'ROUND_START', payload: res.snapshot })
+      dispatchRoom({ type: 'SET_PLAYERS', players: res.snapshot.players })
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    if (!socket) return
+
+    function handlePlayerListUpdate({ room }) {
+      dispatchRoom({ type: 'SET_PLAYERS', players: room.players })
+    }
+
+    socket.on(SOCKET_EVENTS.PLAYER_JOINED, handlePlayerListUpdate)
+    socket.on(SOCKET_EVENTS.PLAYER_LEFT, handlePlayerListUpdate)
+
+    return () => {
+      socket.off(SOCKET_EVENTS.PLAYER_JOINED, handlePlayerListUpdate)
+      socket.off(SOCKET_EVENTS.PLAYER_LEFT, handlePlayerListUpdate)
+    }
+  }, [socket, dispatchRoom])
 
   useEffect(() => {
     if (!socket) return

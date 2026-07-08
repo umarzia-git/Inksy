@@ -11,8 +11,8 @@ const TOOLS = [
 
 function Toolbar({ tool, onToolChange, color, onColorChange, brushSize, onBrushSizeChange, onUndo, onClear, canUndo, disabled }) {
   return (
-    <div className="flex flex-wrap items-center gap-3 border-b border-white/10 p-2">
-      <div className="flex gap-1">
+    <div className="flex flex-nowrap items-center gap-3 overflow-x-auto border-b border-white/10 p-2">
+      <div className="flex shrink-0 gap-1">
         {TOOLS.map((t) => (
           <button
             key={t.id}
@@ -20,7 +20,7 @@ function Toolbar({ tool, onToolChange, color, onColorChange, brushSize, onBrushS
             disabled={disabled}
             aria-pressed={tool === t.id}
             onClick={() => onToolChange(t.id)}
-            className={`flex h-9 w-9 items-center justify-center rounded-lg text-lg transition disabled:opacity-40 ${
+            className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-lg transition disabled:opacity-40 ${
               tool === t.id ? 'bg-ink-coral' : 'bg-white/5 hover:bg-white/10'
             }`}
           >
@@ -32,19 +32,19 @@ function Toolbar({ tool, onToolChange, color, onColorChange, brushSize, onBrushS
       <ColorPalette selectedColor={color} onSelect={onColorChange} />
       <BrushSizeSlider value={brushSize} onChange={onBrushSizeChange} />
 
-      <div className="ml-auto flex gap-1">
+      <div className="ml-auto flex shrink-0 gap-1">
         <button
           type="button"
           disabled={!canUndo}
           onClick={onUndo}
-          className="rounded-lg bg-white/5 px-3 py-1.5 text-sm transition hover:bg-white/10 disabled:opacity-30"
+          className="flex h-11 shrink-0 items-center rounded-lg bg-white/5 px-3 text-sm transition hover:bg-white/10 disabled:opacity-30"
         >
           Undo
         </button>
         <button
           type="button"
           onClick={onClear}
-          className="rounded-lg bg-white/5 px-3 py-1.5 text-sm transition hover:bg-white/10"
+          className="flex h-11 shrink-0 items-center rounded-lg bg-white/5 px-3 text-sm transition hover:bg-white/10"
         >
           Clear
         </button>

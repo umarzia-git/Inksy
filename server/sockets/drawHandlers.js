@@ -1,9 +1,10 @@
 import { SOCKET_EVENTS } from '../utils/socketEvents.js'
 import { Room } from '../models/Room.js'
 
-// A socket may only draw in the room it actually joined via room:create/room:join.
+// A socket may only draw in the room it actually joined via room:create/room:join,
+// and spectators can't draw until they're promoted to a full player next round.
 function isAuthorized(socket, roomCode) {
-  return Boolean(socket.data.roomCode) && socket.data.roomCode === roomCode
+  return Boolean(socket.data.roomCode) && socket.data.roomCode === roomCode && !socket.data.isSpectator
 }
 
 export function registerDrawHandlers(io, socket, withErrorHandling) {

@@ -16,8 +16,31 @@ function shuffle(array) {
   return copy
 }
 
-function blankPattern(word, revealedIndices) {
+export function blankPattern(word, revealedIndices) {
   return word.split('').map((ch, i) => (ch === ' ' || revealedIndices.includes(i) ? ch : null))
+}
+
+// Snapshot of the current turn for a player joining/rejoining mid-game, so their
+// client can render the right phase instead of defaulting to 'lobby'. Never
+// includes current_word — a reconnecting drawer gets that separately via a
+// direct WORD_REVEAL/WORD_CHOICES emit, never through this broadcast-shaped payload.
+export function buildGameSnapshot(room) {
+  if (room.status === 'lobby' || room.status === 'game_end') return null
+
+  const drawerId = room.game_state.current_drawer_player_id
+  const drawer = room.players.find((p) => p.player_id === drawerId)
+  const revealed = room.status === 'word_select' ? [] : blankPattern(room.game_state.current_word || '', room.game_state.revealed_indices)
+
+  return {
+    phase: room.status,
+    round_number: room.game_state.round_number,
+    total_rounds: room.game_state.total_rounds,
+    drawer: drawer && { playerId: drawer.player_id, nickname: drawer.nickname, avatar: drawer.avatar },
+    word_length: room.game_state.word_length,
+    revealed,
+    turn_ends_at: room.game_state.turn_ends_at,
+    players: publicPlayers(room),
+  }
 }
 
 async function emitToPlayer(io, roomCode, playerId, event, payload) {
@@ -35,7 +58,16 @@ function publicPlayers(room) {
     is_host: p.is_host,
     connected: p.connected,
     status: p.status,
+    is_spectator: p.is_spectator,
   }))
+}
+
+async function updateSocketSpectatorFlags(io, roomCode, playerIds, isSpectator) {
+  if (playerIds.length === 0) return
+  const sockets = await io.in(roomCode).fetchSockets()
+  for (const s of sockets) {
+    if (playerIds.includes(s.data.playerId)) s.data.isSpectator = isSpectator
+  }
 }
 
 function startRoundTimerBroadcast(io, roomCode, turnEndsAt) {
@@ -58,7 +90,7 @@ export async function startGame(io, roomCode) {
   room.status = 'word_select'
   room.game_state.round_number = 1
   room.game_state.total_rounds = room.settings.rounds
-  room.game_state.draw_order = shuffle(room.players.map((p) => p.player_id))
+  room.game_state.draw_order = shuffle(room.players.filter((p) => !p.is_spectator).map((p) => p.player_id))
   room.game_state.turn_index = 0
   await room.save()
 
@@ -76,7 +108,7 @@ export async function startTurn(io, roomCode) {
 
   room.status = 'word_select'
   room.game_state.current_drawer_player_id = drawerId
-  room.game_state.word_choices = await pickWordChoices(room.settings.difficulty, room.game_state.used_words)
+  room.game_state.word_choices = await pickWordChoices(room.settings.difficulty, room.game_state.used_words, room.custom_words)
   room.game_state.used_words = [...room.game_state.used_words, ...room.game_state.word_choices]
   room.game_state.current_word = null
   room.game_state.word_length = 0
@@ -85,7 +117,10 @@ export async function startTurn(io, roomCode) {
   room.game_state.turn_started_at = new Date()
   room.game_state.turn_ends_at = new Date(Date.now() + WORD_SELECT_DURATION_MS)
   room.canvas_strokes = []
-  for (const p of room.players) p.status = p.player_id === drawerId ? 'choosing' : 'waiting'
+  for (const p of room.players) {
+    if (p.is_spectator) continue
+    p.status = p.player_id === drawerId ? 'choosing' : 'waiting'
+  }
   await room.save()
 
   io.to(roomCode).emit(SOCKET_EVENTS.DRAW_CLEAR)
@@ -134,6 +169,7 @@ async function beginDrawing(io, roomCode, word) {
   room.game_state.turn_started_at = new Date()
   room.game_state.turn_ends_at = new Date(Date.now() + drawTimeMs)
   for (const p of room.players) {
+    if (p.is_spectator) continue
     p.status = p.player_id === room.game_state.current_drawer_player_id ? 'drawing' : 'waiting'
   }
   await room.save()
@@ -179,7 +215,7 @@ export async function submitGuess(io, roomCode, playerId, message) {
   const room = await Room.findOne({ room_code: roomCode })
   if (!room) return
   const player = room.players.find((p) => p.player_id === playerId)
-  if (!player) return
+  if (!player || player.is_spectator) return
 
   const isDrawer = playerId === room.game_state.current_drawer_player_id
   const alreadyGuessed = room.game_state.correct_guessers.includes(playerId)
@@ -190,8 +226,8 @@ export async function submitGuess(io, roomCode, playerId, message) {
     message.trim().toLowerCase() === (room.game_state.current_word || '').toLowerCase()
 
   if (isCorrectGuess) {
-    const elapsedMs = Date.now() - new Date(room.game_state.turn_started_at).getTime()
-    const points = calculateGuessPoints(elapsedMs, room.settings.draw_time_sec * 1000)
+    const rank = room.game_state.correct_guessers.length + 1
+    const points = calculateGuessPoints(rank)
     player.score += points
     player.status = 'guessed'
     room.game_state.correct_guessers.push(playerId)
@@ -206,7 +242,7 @@ export async function submitGuess(io, roomCode, playerId, message) {
     })
 
     const nonDrawerCount = room.players.filter(
-      (p) => p.player_id !== room.game_state.current_drawer_player_id && p.connected,
+      (p) => p.player_id !== room.game_state.current_drawer_player_id && p.connected && !p.is_spectator,
     ).length
     if (room.game_state.correct_guessers.length >= nonDrawerCount) {
       await endTurn(io, roomCode, 'all_guessed')
@@ -258,6 +294,16 @@ async function advanceTurn(io, roomCode) {
 
   const nextRound = room.game_state.round_number + 1
   if (nextRound <= room.game_state.total_rounds) {
+    const spectators = room.players.filter((p) => p.is_spectator)
+    for (const p of spectators) {
+      p.is_spectator = false
+      p.status = 'waiting'
+    }
+    if (spectators.length > 0) {
+      room.game_state.draw_order = [...room.game_state.draw_order, ...spectators.map((p) => p.player_id)]
+      await updateSocketSpectatorFlags(io, roomCode, spectators.map((p) => p.player_id), false)
+    }
+
     room.game_state.round_number = nextRound
     room.game_state.turn_index = 0
     await room.save()
@@ -306,6 +352,7 @@ export async function rematch(io, roomCode) {
   for (const p of room.players) {
     p.score = 0
     p.status = 'waiting'
+    p.is_spectator = false
   }
   room.status = 'lobby'
   await room.save()

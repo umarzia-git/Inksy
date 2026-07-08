@@ -1,19 +1,17 @@
-import { customAlphabet } from 'nanoid'
+import crypto from 'node:crypto'
 import { Room } from '../models/Room.js'
 import { MAX_PLAYERS_PER_ROOM } from '../utils/gameConstants.js'
 
-const generateCodeSuffix = customAlphabet('0123456789', 4)
-
 async function generateUniqueRoomCode() {
   for (let attempt = 0; attempt < 10; attempt++) {
-    const code = `INKSY-${generateCodeSuffix()}`
+    const code = String(crypto.randomInt(100000, 1000000))
     const exists = await Room.exists({ room_code: code })
     if (!exists) return code
   }
   throw new Error('Could not generate a unique room code, please try again')
 }
 
-export async function createRoom({ hostPlayerId, nickname, avatar, settings }) {
+export async function createRoom({ hostPlayerId, nickname, avatar, settings, customWords = [] }) {
   const roomCode = await generateUniqueRoomCode()
   const room = await Room.create({
     room_code: roomCode,
@@ -30,6 +28,7 @@ export async function createRoom({ hostPlayerId, nickname, avatar, settings }) {
         status: 'waiting',
       },
     ],
+    custom_words: customWords,
   })
   return room
 }
@@ -39,11 +38,32 @@ export async function joinRoom({ roomCode, playerId, nickname, avatar }) {
   if (!room) {
     throw Object.assign(new Error('Room not found'), { code: 'ROOM_NOT_FOUND' })
   }
-  if (room.status !== 'lobby') {
-    throw Object.assign(new Error('Game already in progress'), { code: 'ROOM_IN_PROGRESS' })
+
+  if (room.status === 'lobby') {
+    if (room.players.length >= MAX_PLAYERS_PER_ROOM) {
+      throw Object.assign(new Error('Room is full'), { code: 'ROOM_FULL' })
+    }
+    room.players.push({
+      player_id: playerId,
+      nickname,
+      avatar,
+      is_host: false,
+      connected: true,
+      status: 'waiting',
+    })
+    await room.save()
+    return { room, playerId, isSpectator: false, isReconnect: false }
   }
-  if (room.players.length >= MAX_PLAYERS_PER_ROOM) {
-    throw Object.assign(new Error('Room is full'), { code: 'ROOM_FULL' })
+
+  // A game is already running. Someone with a matching nickname is treated as
+  // the same person rejoining (their seat/score is restored); anyone new
+  // joins as a spectator until the next round starts.
+  const existing = room.players.find((p) => p.nickname.toLowerCase() === nickname.toLowerCase())
+  if (existing) {
+    existing.connected = true
+    existing.disconnected_at = null
+    await room.save()
+    return { room, playerId: existing.player_id, isSpectator: existing.is_spectator, isReconnect: true }
   }
 
   room.players.push({
@@ -52,10 +72,11 @@ export async function joinRoom({ roomCode, playerId, nickname, avatar }) {
     avatar,
     is_host: false,
     connected: true,
-    status: 'waiting',
+    status: 'spectating',
+    is_spectator: true,
   })
   await room.save()
-  return room
+  return { room, playerId, isSpectator: true, isReconnect: false }
 }
 
 export async function removePlayer(roomCode, playerId) {

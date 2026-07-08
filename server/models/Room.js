@@ -12,7 +12,8 @@ const playerSchema = new Schema(
     connected: { type: Boolean, default: true },
     socket_id: { type: String, default: null },
     disconnected_at: { type: Date, default: null },
-    status: { type: String, enum: ['waiting', 'drawing', 'guessed', 'choosing'], default: 'waiting' },
+    status: { type: String, enum: ['waiting', 'drawing', 'guessed', 'choosing', 'spectating'], default: 'waiting' },
+    is_spectator: { type: Boolean, default: false },
   },
   { _id: false },
 )
@@ -73,6 +74,7 @@ const roomSchema = new Schema(
     },
     canvas_strokes: { type: [strokeSchema], default: [] },
     chat_log: { type: [chatMessageSchema], default: [] },
+    custom_words: { type: [String], default: [] }, // host-provided words for this room, mixed into the pool each turn
   },
   { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } },
 )

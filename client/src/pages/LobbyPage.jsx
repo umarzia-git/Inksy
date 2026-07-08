@@ -50,6 +50,24 @@ function LobbyPage() {
       <h1 className="font-heading text-3xl text-ink-coral">Lobby</h1>
       <RoomCodeShare roomCode={code} />
 
+      {state.settings && (
+        <div className="flex flex-wrap justify-center gap-2">
+          <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ink-text/70">
+            {state.settings.rounds} Rounds
+          </span>
+          <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ink-text/70">
+            {state.settings.draw_time_sec}s Draw Time
+          </span>
+          <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ink-text/70 capitalize">
+            {state.settings.difficulty}
+          </span>
+        </div>
+      )}
+
+      {state.customWordCount > 0 && (
+        <p className="text-sm text-ink-yellow">🎨 {state.customWordCount} custom words added by the host</p>
+      )}
+
       <div className="w-full max-w-md">
         <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-ink-text/60">
           Players ({state.players.length})
@@ -63,14 +81,17 @@ function LobbyPage() {
             type="button"
             disabled={!canStart}
             onClick={() => socket.emit(SOCKET_EVENTS.GAME_START, { roomCode: code })}
-            className="w-full rounded-lg bg-ink-coral px-6 py-3 font-heading text-lg text-ink-bg transition disabled:opacity-40"
+            className={`w-full rounded-lg px-6 py-3 font-heading text-lg transition-all duration-200 ${
+              canStart
+                ? 'btn-glow-pulse cursor-pointer bg-ink-coral text-ink-bg hover:scale-[1.02] hover:brightness-110'
+                : 'cursor-not-allowed bg-white/10 text-ink-text/40'
+            }`}
           >
-            Start Game
+            {canStart ? 'Start Game' : 'Waiting for players…'}
           </button>
         ) : (
           <p className="text-ink-text/70">Waiting for the host to start the game…</p>
         )}
-        {isHost && !canStart && <p className="text-sm text-ink-text/60">Need at least 2 players to start.</p>}
       </div>
     </div>
   )

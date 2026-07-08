@@ -1,10 +1,12 @@
 import { useEffect } from 'react'
 import confetti from 'canvas-confetti'
 import Scoreboard from './Scoreboard.jsx'
+import { playWinnerFanfare } from '../../utils/sounds.js'
 
 function WinnerScreen({ players, winner, isHost, onRematch, onLeave }) {
   useEffect(() => {
     confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } })
+    playWinnerFanfare()
   }, [])
 
   return (

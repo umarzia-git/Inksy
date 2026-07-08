@@ -1,8 +1,8 @@
-import { MAX_GUESS_POINTS, MIN_GUESS_POINTS, DRAWER_POINTS_PER_GUESSER, DRAWER_ALL_GUESSED_BONUS } from '../utils/gameConstants.js'
+import { GUESS_POINTS_BY_RANK, MIN_GUESS_POINTS, DRAWER_POINTS_PER_GUESSER, DRAWER_ALL_GUESSED_BONUS } from '../utils/gameConstants.js'
 
-export function calculateGuessPoints(elapsedMs, totalMs) {
-  const fraction = Math.max(0, Math.min(1, elapsedMs / totalMs))
-  return Math.max(MIN_GUESS_POINTS, Math.round(MAX_GUESS_POINTS * (1 - fraction)))
+// rank is 1-indexed: 1 for the first correct guess, 2 for the second, etc.
+export function calculateGuessPoints(rank) {
+  return GUESS_POINTS_BY_RANK[rank - 1] ?? MIN_GUESS_POINTS
 }
 
 export function calculateDrawerBonus(correctGuesserCount, allGuessed) {

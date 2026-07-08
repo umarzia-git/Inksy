@@ -1,49 +1,2912 @@
 [
-  { "word": "cat", "difficulty": "easy", "category": "animals" },
-  { "word": "dog", "difficulty": "easy", "category": "animals" },
-  { "word": "sun", "difficulty": "easy", "category": "nature" },
-  { "word": "moon", "difficulty": "easy", "category": "space" },
-  { "word": "ball", "difficulty": "easy", "category": "objects" },
-  { "word": "tree", "difficulty": "easy", "category": "nature" },
-  { "word": "fish", "difficulty": "easy", "category": "animals" },
-  { "word": "car", "difficulty": "easy", "category": "objects" },
-  { "word": "house", "difficulty": "easy", "category": "objects" },
-  { "word": "book", "difficulty": "easy", "category": "objects" },
-  { "word": "pizza", "difficulty": "easy", "category": "food" },
-  { "word": "banana", "difficulty": "easy", "category": "food" },
-  { "word": "star", "difficulty": "easy", "category": "space" },
-  { "word": "rain", "difficulty": "easy", "category": "nature" },
-  { "word": "shoe", "difficulty": "easy", "category": "objects" },
-
-  { "word": "elephant", "difficulty": "medium", "category": "animals" },
-  { "word": "guitar", "difficulty": "medium", "category": "objects" },
-  { "word": "rainbow", "difficulty": "medium", "category": "nature" },
-  { "word": "sandwich", "difficulty": "medium", "category": "food" },
-  { "word": "rocket", "difficulty": "medium", "category": "space" },
-  { "word": "penguin", "difficulty": "medium", "category": "animals" },
-  { "word": "castle", "difficulty": "medium", "category": "objects" },
-  { "word": "volcano", "difficulty": "medium", "category": "nature" },
-  { "word": "spaceship", "difficulty": "medium", "category": "space" },
-  { "word": "umbrella", "difficulty": "medium", "category": "objects" },
-  { "word": "dinosaur", "difficulty": "medium", "category": "animals" },
-  { "word": "butterfly", "difficulty": "medium", "category": "animals" },
-  { "word": "hamburger", "difficulty": "medium", "category": "food" },
-  { "word": "telescope", "difficulty": "medium", "category": "space" },
-  { "word": "mountain", "difficulty": "medium", "category": "nature" },
-
-  { "word": "astronaut", "difficulty": "hard", "category": "space" },
-  { "word": "constellation", "difficulty": "hard", "category": "space" },
-  { "word": "chameleon", "difficulty": "hard", "category": "animals" },
-  { "word": "skyscraper", "difficulty": "hard", "category": "objects" },
-  { "word": "avalanche", "difficulty": "hard", "category": "nature" },
-  { "word": "kaleidoscope", "difficulty": "hard", "category": "objects" },
-  { "word": "hippopotamus", "difficulty": "hard", "category": "animals" },
-  { "word": "thunderstorm", "difficulty": "hard", "category": "nature" },
-  { "word": "spaghetti", "difficulty": "hard", "category": "food" },
-  { "word": "satellite", "difficulty": "hard", "category": "space" },
-  { "word": "waterfall", "difficulty": "hard", "category": "nature" },
-  { "word": "octopus", "difficulty": "hard", "category": "animals" },
-  { "word": "lighthouse", "difficulty": "hard", "category": "objects" },
-  { "word": "galaxy", "difficulty": "hard", "category": "space" },
-  { "word": "pineapple", "difficulty": "hard", "category": "food" }
+  {
+    "word": "cat",
+    "difficulty": "easy",
+    "category": "animals"
+  },
+  {
+    "word": "dog",
+    "difficulty": "easy",
+    "category": "animals"
+  },
+  {
+    "word": "sun",
+    "difficulty": "easy",
+    "category": "nature"
+  },
+  {
+    "word": "moon",
+    "difficulty": "easy",
+    "category": "space"
+  },
+  {
+    "word": "ball",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "word": "tree",
+    "difficulty": "easy",
+    "category": "nature"
+  },
+  {
+    "word": "fish",
+    "difficulty": "easy",
+    "category": "animals"
+  },
+  {
+    "word": "car",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "word": "house",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "word": "book",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "word": "pizza",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "word": "banana",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "word": "star",
+    "difficulty": "easy",
+    "category": "space"
+  },
+  {
+    "word": "rain",
+    "difficulty": "easy",
+    "category": "nature"
+  },
+  {
+    "word": "shoe",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "word": "elephant",
+    "difficulty": "medium",
+    "category": "animals"
+  },
+  {
+    "word": "guitar",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "word": "rainbow",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "word": "sandwich",
+    "difficulty": "medium",
+    "category": "food"
+  },
+  {
+    "word": "rocket",
+    "difficulty": "medium",
+    "category": "space"
+  },
+  {
+    "word": "penguin",
+    "difficulty": "medium",
+    "category": "animals"
+  },
+  {
+    "word": "castle",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "word": "volcano",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "word": "spaceship",
+    "difficulty": "medium",
+    "category": "space"
+  },
+  {
+    "word": "umbrella",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "word": "dinosaur",
+    "difficulty": "medium",
+    "category": "animals"
+  },
+  {
+    "word": "butterfly",
+    "difficulty": "medium",
+    "category": "animals"
+  },
+  {
+    "word": "hamburger",
+    "difficulty": "medium",
+    "category": "food"
+  },
+  {
+    "word": "telescope",
+    "difficulty": "medium",
+    "category": "space"
+  },
+  {
+    "word": "mountain",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "word": "astronaut",
+    "difficulty": "hard",
+    "category": "space"
+  },
+  {
+    "word": "constellation",
+    "difficulty": "hard",
+    "category": "space"
+  },
+  {
+    "word": "chameleon",
+    "difficulty": "hard",
+    "category": "animals"
+  },
+  {
+    "word": "skyscraper",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "word": "avalanche",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "word": "kaleidoscope",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "word": "hippopotamus",
+    "difficulty": "hard",
+    "category": "animals"
+  },
+  {
+    "word": "thunderstorm",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "word": "spaghetti",
+    "difficulty": "hard",
+    "category": "food"
+  },
+  {
+    "word": "satellite",
+    "difficulty": "hard",
+    "category": "space"
+  },
+  {
+    "word": "waterfall",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "word": "octopus",
+    "difficulty": "hard",
+    "category": "animals"
+  },
+  {
+    "word": "lighthouse",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "word": "galaxy",
+    "difficulty": "hard",
+    "category": "space"
+  },
+  {
+    "word": "pineapple",
+    "difficulty": "hard",
+    "category": "food"
+  },
+  {
+    "word": "cow",
+    "difficulty": "easy",
+    "category": "animals"
+  },
+  {
+    "word": "pig",
+    "difficulty": "easy",
+    "category": "animals"
+  },
+  {
+    "word": "duck",
+    "difficulty": "easy",
+    "category": "animals"
+  },
+  {
+    "word": "bird",
+    "difficulty": "easy",
+    "category": "animals"
+  },
+  {
+    "word": "frog",
+    "difficulty": "easy",
+    "category": "animals"
+  },
+  {
+    "word": "bear",
+    "difficulty": "easy",
+    "category": "animals"
+  },
+  {
+    "word": "lion",
+    "difficulty": "easy",
+    "category": "animals"
+  },
+  {
+    "word": "deer",
+    "difficulty": "easy",
+    "category": "animals"
+  },
+  {
+    "word": "goat",
+    "difficulty": "easy",
+    "category": "animals"
+  },
+  {
+    "word": "sheep",
+    "difficulty": "easy",
+    "category": "animals"
+  },
+  {
+    "word": "mouse",
+    "difficulty": "easy",
+    "category": "animals"
+  },
+  {
+    "word": "hen",
+    "difficulty": "easy",
+    "category": "animals"
+  },
+  {
+    "word": "giraffe",
+    "difficulty": "medium",
+    "category": "animals"
+  },
+  {
+    "word": "kangaroo",
+    "difficulty": "medium",
+    "category": "animals"
+  },
+  {
+    "word": "dolphin",
+    "difficulty": "medium",
+    "category": "animals"
+  },
+  {
+    "word": "crocodile",
+    "difficulty": "medium",
+    "category": "animals"
+  },
+  {
+    "word": "flamingo",
+    "difficulty": "medium",
+    "category": "animals"
+  },
+  {
+    "word": "peacock",
+    "difficulty": "medium",
+    "category": "animals"
+  },
+  {
+    "word": "squirrel",
+    "difficulty": "medium",
+    "category": "animals"
+  },
+  {
+    "word": "raccoon",
+    "difficulty": "medium",
+    "category": "animals"
+  },
+  {
+    "word": "tortoise",
+    "difficulty": "medium",
+    "category": "animals"
+  },
+  {
+    "word": "zebra",
+    "difficulty": "medium",
+    "category": "animals"
+  },
+  {
+    "word": "gorilla",
+    "difficulty": "medium",
+    "category": "animals"
+  },
+  {
+    "word": "ostrich",
+    "difficulty": "medium",
+    "category": "animals"
+  },
+  {
+    "word": "rhinoceros",
+    "difficulty": "hard",
+    "category": "animals"
+  },
+  {
+    "word": "chimpanzee",
+    "difficulty": "hard",
+    "category": "animals"
+  },
+  {
+    "word": "porcupine",
+    "difficulty": "hard",
+    "category": "animals"
+  },
+  {
+    "word": "salamander",
+    "difficulty": "hard",
+    "category": "animals"
+  },
+  {
+    "word": "orangutan",
+    "difficulty": "hard",
+    "category": "animals"
+  },
+  {
+    "word": "platypus",
+    "difficulty": "hard",
+    "category": "animals"
+  },
+  {
+    "word": "armadillo",
+    "difficulty": "hard",
+    "category": "animals"
+  },
+  {
+    "word": "mongoose",
+    "difficulty": "hard",
+    "category": "animals"
+  },
+  {
+    "word": "hedgehog",
+    "difficulty": "hard",
+    "category": "animals"
+  },
+  {
+    "word": "narwhal",
+    "difficulty": "hard",
+    "category": "animals"
+  },
+  {
+    "word": "scorpion",
+    "difficulty": "hard",
+    "category": "animals"
+  },
+  {
+    "word": "tarantula",
+    "difficulty": "hard",
+    "category": "animals"
+  },
+  {
+    "word": "apple",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "word": "egg",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "word": "milk",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "word": "bread",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "word": "cake",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "word": "rice",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "word": "soup",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "word": "taco",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "word": "corn",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "word": "candy",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "word": "donut",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "word": "cheese",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "word": "burrito",
+    "difficulty": "medium",
+    "category": "food"
+  },
+  {
+    "word": "popcorn",
+    "difficulty": "medium",
+    "category": "food"
+  },
+  {
+    "word": "pancake",
+    "difficulty": "medium",
+    "category": "food"
+  },
+  {
+    "word": "omelette",
+    "difficulty": "medium",
+    "category": "food"
+  },
+  {
+    "word": "waffle",
+    "difficulty": "medium",
+    "category": "food"
+  },
+  {
+    "word": "noodles",
+    "difficulty": "medium",
+    "category": "food"
+  },
+  {
+    "word": "sausage",
+    "difficulty": "medium",
+    "category": "food"
+  },
+  {
+    "word": "avocado",
+    "difficulty": "medium",
+    "category": "food"
+  },
+  {
+    "word": "broccoli",
+    "difficulty": "medium",
+    "category": "food"
+  },
+  {
+    "word": "meatball",
+    "difficulty": "medium",
+    "category": "food"
+  },
+  {
+    "word": "croissant",
+    "difficulty": "medium",
+    "category": "food"
+  },
+  {
+    "word": "lasagna",
+    "difficulty": "medium",
+    "category": "food"
+  },
+  {
+    "word": "quesadilla",
+    "difficulty": "hard",
+    "category": "food"
+  },
+  {
+    "word": "casserole",
+    "difficulty": "hard",
+    "category": "food"
+  },
+  {
+    "word": "cheesecake",
+    "difficulty": "hard",
+    "category": "food"
+  },
+  {
+    "word": "guacamole",
+    "difficulty": "hard",
+    "category": "food"
+  },
+  {
+    "word": "ratatouille",
+    "difficulty": "hard",
+    "category": "food"
+  },
+  {
+    "word": "croquette",
+    "difficulty": "hard",
+    "category": "food"
+  },
+  {
+    "word": "bruschetta",
+    "difficulty": "hard",
+    "category": "food"
+  },
+  {
+    "word": "tiramisu",
+    "difficulty": "hard",
+    "category": "food"
+  },
+  {
+    "word": "enchilada",
+    "difficulty": "hard",
+    "category": "food"
+  },
+  {
+    "word": "marshmallow",
+    "difficulty": "hard",
+    "category": "food"
+  },
+  {
+    "word": "pomegranate",
+    "difficulty": "hard",
+    "category": "food"
+  },
+  {
+    "word": "watermelon",
+    "difficulty": "hard",
+    "category": "food"
+  },
+  {
+    "word": "bat",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "word": "goal",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "word": "race",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "word": "swim",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "word": "jump",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "word": "kick",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "word": "run",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "word": "net",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "word": "gym",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "word": "ski",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "word": "tag",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "word": "soccer",
+    "difficulty": "medium",
+    "category": "sports"
+  },
+  {
+    "word": "hockey",
+    "difficulty": "medium",
+    "category": "sports"
+  },
+  {
+    "word": "tennis",
+    "difficulty": "medium",
+    "category": "sports"
+  },
+  {
+    "word": "boxing",
+    "difficulty": "medium",
+    "category": "sports"
+  },
+  {
+    "word": "cricket",
+    "difficulty": "medium",
+    "category": "sports"
+  },
+  {
+    "word": "bowling",
+    "difficulty": "medium",
+    "category": "sports"
+  },
+  {
+    "word": "archery",
+    "difficulty": "medium",
+    "category": "sports"
+  },
+  {
+    "word": "cycling",
+    "difficulty": "medium",
+    "category": "sports"
+  },
+  {
+    "word": "wrestling",
+    "difficulty": "medium",
+    "category": "sports"
+  },
+  {
+    "word": "baseball",
+    "difficulty": "medium",
+    "category": "sports"
+  },
+  {
+    "word": "football",
+    "difficulty": "medium",
+    "category": "sports"
+  },
+  {
+    "word": "marathon",
+    "difficulty": "medium",
+    "category": "sports"
+  },
+  {
+    "word": "badminton",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "word": "gymnastics",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "word": "basketball",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "word": "volleyball",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "word": "snowboarding",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "word": "weightlifting",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "word": "skateboarding",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "word": "table tennis",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "word": "figure skating",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "word": "pole vault",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "word": "triathlon",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "word": "decathlon",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "word": "up",
+    "difficulty": "easy",
+    "category": "movies"
+  },
+  {
+    "word": "cars",
+    "difficulty": "easy",
+    "category": "movies"
+  },
+  {
+    "word": "brave",
+    "difficulty": "easy",
+    "category": "movies"
+  },
+  {
+    "word": "coco",
+    "difficulty": "easy",
+    "category": "movies"
+  },
+  {
+    "word": "jaws",
+    "difficulty": "easy",
+    "category": "movies"
+  },
+  {
+    "word": "shrek",
+    "difficulty": "easy",
+    "category": "movies"
+  },
+  {
+    "word": "frozen",
+    "difficulty": "easy",
+    "category": "movies"
+  },
+  {
+    "word": "moana",
+    "difficulty": "easy",
+    "category": "movies"
+  },
+  {
+    "word": "tangled",
+    "difficulty": "easy",
+    "category": "movies"
+  },
+  {
+    "word": "avatar",
+    "difficulty": "easy",
+    "category": "movies"
+  },
+  {
+    "word": "aladdin",
+    "difficulty": "easy",
+    "category": "movies"
+  },
+  {
+    "word": "rio",
+    "difficulty": "easy",
+    "category": "movies"
+  },
+  {
+    "word": "inception",
+    "difficulty": "medium",
+    "category": "movies"
+  },
+  {
+    "word": "jumanji",
+    "difficulty": "medium",
+    "category": "movies"
+  },
+  {
+    "word": "gladiator",
+    "difficulty": "medium",
+    "category": "movies"
+  },
+  {
+    "word": "minions",
+    "difficulty": "medium",
+    "category": "movies"
+  },
+  {
+    "word": "matrix",
+    "difficulty": "medium",
+    "category": "movies"
+  },
+  {
+    "word": "gravity",
+    "difficulty": "medium",
+    "category": "movies"
+  },
+  {
+    "word": "titanic",
+    "difficulty": "medium",
+    "category": "movies"
+  },
+  {
+    "word": "godzilla",
+    "difficulty": "medium",
+    "category": "movies"
+  },
+  {
+    "word": "jurassic",
+    "difficulty": "medium",
+    "category": "movies"
+  },
+  {
+    "word": "zootopia",
+    "difficulty": "medium",
+    "category": "movies"
+  },
+  {
+    "word": "luca",
+    "difficulty": "medium",
+    "category": "movies"
+  },
+  {
+    "word": "sing",
+    "difficulty": "medium",
+    "category": "movies"
+  },
+  {
+    "word": "interstellar",
+    "difficulty": "hard",
+    "category": "movies"
+  },
+  {
+    "word": "terminator",
+    "difficulty": "hard",
+    "category": "movies"
+  },
+  {
+    "word": "apocalypse",
+    "difficulty": "hard",
+    "category": "movies"
+  },
+  {
+    "word": "spirited away",
+    "difficulty": "hard",
+    "category": "movies"
+  },
+  {
+    "word": "indiana jones",
+    "difficulty": "hard",
+    "category": "movies"
+  },
+  {
+    "word": "back to the future",
+    "difficulty": "hard",
+    "category": "movies"
+  },
+  {
+    "word": "jurassic park",
+    "difficulty": "hard",
+    "category": "movies"
+  },
+  {
+    "word": "home alone",
+    "difficulty": "hard",
+    "category": "movies"
+  },
+  {
+    "word": "the grinch",
+    "difficulty": "hard",
+    "category": "movies"
+  },
+  {
+    "word": "night at the museum",
+    "difficulty": "hard",
+    "category": "movies"
+  },
+  {
+    "word": "pirates of the caribbean",
+    "difficulty": "hard",
+    "category": "movies"
+  },
+  {
+    "word": "national treasure",
+    "difficulty": "hard",
+    "category": "movies"
+  },
+  {
+    "word": "phone",
+    "difficulty": "easy",
+    "category": "technology"
+  },
+  {
+    "word": "robot",
+    "difficulty": "easy",
+    "category": "technology"
+  },
+  {
+    "word": "laptop",
+    "difficulty": "easy",
+    "category": "technology"
+  },
+  {
+    "word": "camera",
+    "difficulty": "easy",
+    "category": "technology"
+  },
+  {
+    "word": "drone",
+    "difficulty": "easy",
+    "category": "technology"
+  },
+  {
+    "word": "radio",
+    "difficulty": "easy",
+    "category": "technology"
+  },
+  {
+    "word": "clock",
+    "difficulty": "easy",
+    "category": "technology"
+  },
+  {
+    "word": "wifi",
+    "difficulty": "easy",
+    "category": "technology"
+  },
+  {
+    "word": "chip",
+    "difficulty": "easy",
+    "category": "technology"
+  },
+  {
+    "word": "screen",
+    "difficulty": "easy",
+    "category": "technology"
+  },
+  {
+    "word": "keyboard",
+    "difficulty": "easy",
+    "category": "technology"
+  },
+  {
+    "word": "mouse pad",
+    "difficulty": "easy",
+    "category": "technology"
+  },
+  {
+    "word": "computer",
+    "difficulty": "medium",
+    "category": "technology"
+  },
+  {
+    "word": "internet",
+    "difficulty": "medium",
+    "category": "technology"
+  },
+  {
+    "word": "tablet",
+    "difficulty": "medium",
+    "category": "technology"
+  },
+  {
+    "word": "printer",
+    "difficulty": "medium",
+    "category": "technology"
+  },
+  {
+    "word": "microphone",
+    "difficulty": "medium",
+    "category": "technology"
+  },
+  {
+    "word": "headphones",
+    "difficulty": "medium",
+    "category": "technology"
+  },
+  {
+    "word": "monitor",
+    "difficulty": "medium",
+    "category": "technology"
+  },
+  {
+    "word": "charger",
+    "difficulty": "medium",
+    "category": "technology"
+  },
+  {
+    "word": "router",
+    "difficulty": "medium",
+    "category": "technology"
+  },
+  {
+    "word": "scanner",
+    "difficulty": "medium",
+    "category": "technology"
+  },
+  {
+    "word": "joystick",
+    "difficulty": "medium",
+    "category": "technology"
+  },
+  {
+    "word": "webcam",
+    "difficulty": "medium",
+    "category": "technology"
+  },
+  {
+    "word": "smartphone",
+    "difficulty": "hard",
+    "category": "technology"
+  },
+  {
+    "word": "microchip",
+    "difficulty": "hard",
+    "category": "technology"
+  },
+  {
+    "word": "hologram",
+    "difficulty": "hard",
+    "category": "technology"
+  },
+  {
+    "word": "cybersecurity",
+    "difficulty": "hard",
+    "category": "technology"
+  },
+  {
+    "word": "algorithm",
+    "difficulty": "hard",
+    "category": "technology"
+  },
+  {
+    "word": "artificial intelligence",
+    "difficulty": "hard",
+    "category": "technology"
+  },
+  {
+    "word": "virtual reality",
+    "difficulty": "hard",
+    "category": "technology"
+  },
+  {
+    "word": "blockchain",
+    "difficulty": "hard",
+    "category": "technology"
+  },
+  {
+    "word": "supercomputer",
+    "difficulty": "hard",
+    "category": "technology"
+  },
+  {
+    "word": "motherboard",
+    "difficulty": "hard",
+    "category": "technology"
+  },
+  {
+    "word": "bluetooth",
+    "difficulty": "hard",
+    "category": "technology"
+  },
+  {
+    "word": "semiconductor",
+    "difficulty": "hard",
+    "category": "technology"
+  },
+  {
+    "word": "leaf",
+    "difficulty": "easy",
+    "category": "nature"
+  },
+  {
+    "word": "rock",
+    "difficulty": "easy",
+    "category": "nature"
+  },
+  {
+    "word": "wind",
+    "difficulty": "easy",
+    "category": "nature"
+  },
+  {
+    "word": "cloud",
+    "difficulty": "easy",
+    "category": "nature"
+  },
+  {
+    "word": "snow",
+    "difficulty": "easy",
+    "category": "nature"
+  },
+  {
+    "word": "lake",
+    "difficulty": "easy",
+    "category": "nature"
+  },
+  {
+    "word": "hill",
+    "difficulty": "easy",
+    "category": "nature"
+  },
+  {
+    "word": "pond",
+    "difficulty": "easy",
+    "category": "nature"
+  },
+  {
+    "word": "storm",
+    "difficulty": "easy",
+    "category": "nature"
+  },
+  {
+    "word": "ice",
+    "difficulty": "easy",
+    "category": "nature"
+  },
+  {
+    "word": "sand",
+    "difficulty": "easy",
+    "category": "nature"
+  },
+  {
+    "word": "mud",
+    "difficulty": "easy",
+    "category": "nature"
+  },
+  {
+    "word": "desert",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "word": "forest",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "word": "canyon",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "word": "glacier",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "word": "tornado",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "word": "meadow",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "word": "jungle",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "word": "wetland",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "word": "riverbank",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "word": "hurricane",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "word": "blizzard",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "word": "eclipse",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "word": "stalactite",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "word": "ecosystem",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "word": "biodiversity",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "word": "sedimentary rock",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "word": "monsoon",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "word": "permafrost",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "word": "tributary",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "word": "escarpment",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "word": "archipelago",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "word": "tundra",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "word": "savanna",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "word": "geyser",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "word": "cup",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "word": "key",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "word": "box",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "word": "hat",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "word": "pen",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "word": "bag",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "word": "lamp",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "word": "door",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "word": "fork",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "word": "spoon",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "word": "chair",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "word": "table",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "word": "bicycle",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "word": "mirror",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "word": "blanket",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "word": "telephone",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "word": "envelope",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "word": "scissors",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "word": "calendar",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "word": "suitcase",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "word": "bookshelf",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "word": "wardrobe",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "word": "fireplace",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "word": "toolbox",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "word": "chandelier",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "word": "thermostat",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "word": "typewriter",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "word": "hourglass",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "word": "gramophone",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "word": "harpsichord",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "word": "weathervane",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "word": "periscope",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "word": "barometer",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "word": "sundial",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "word": "metronome",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "word": "kaleidoscope frame",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "word": "china",
+    "difficulty": "easy",
+    "category": "countries"
+  },
+  {
+    "word": "spain",
+    "difficulty": "easy",
+    "category": "countries"
+  },
+  {
+    "word": "italy",
+    "difficulty": "easy",
+    "category": "countries"
+  },
+  {
+    "word": "japan",
+    "difficulty": "easy",
+    "category": "countries"
+  },
+  {
+    "word": "india",
+    "difficulty": "easy",
+    "category": "countries"
+  },
+  {
+    "word": "egypt",
+    "difficulty": "easy",
+    "category": "countries"
+  },
+  {
+    "word": "brazil",
+    "difficulty": "easy",
+    "category": "countries"
+  },
+  {
+    "word": "canada",
+    "difficulty": "easy",
+    "category": "countries"
+  },
+  {
+    "word": "mexico",
+    "difficulty": "easy",
+    "category": "countries"
+  },
+  {
+    "word": "france",
+    "difficulty": "easy",
+    "category": "countries"
+  },
+  {
+    "word": "russia",
+    "difficulty": "easy",
+    "category": "countries"
+  },
+  {
+    "word": "kenya",
+    "difficulty": "easy",
+    "category": "countries"
+  },
+  {
+    "word": "germany",
+    "difficulty": "medium",
+    "category": "countries"
+  },
+  {
+    "word": "australia",
+    "difficulty": "medium",
+    "category": "countries"
+  },
+  {
+    "word": "portugal",
+    "difficulty": "medium",
+    "category": "countries"
+  },
+  {
+    "word": "argentina",
+    "difficulty": "medium",
+    "category": "countries"
+  },
+  {
+    "word": "thailand",
+    "difficulty": "medium",
+    "category": "countries"
+  },
+  {
+    "word": "colombia",
+    "difficulty": "medium",
+    "category": "countries"
+  },
+  {
+    "word": "morocco",
+    "difficulty": "medium",
+    "category": "countries"
+  },
+  {
+    "word": "vietnam",
+    "difficulty": "medium",
+    "category": "countries"
+  },
+  {
+    "word": "scotland",
+    "difficulty": "medium",
+    "category": "countries"
+  },
+  {
+    "word": "ireland",
+    "difficulty": "medium",
+    "category": "countries"
+  },
+  {
+    "word": "iceland",
+    "difficulty": "medium",
+    "category": "countries"
+  },
+  {
+    "word": "jamaica",
+    "difficulty": "medium",
+    "category": "countries"
+  },
+  {
+    "word": "switzerland",
+    "difficulty": "hard",
+    "category": "countries"
+  },
+  {
+    "word": "netherlands",
+    "difficulty": "hard",
+    "category": "countries"
+  },
+  {
+    "word": "philippines",
+    "difficulty": "hard",
+    "category": "countries"
+  },
+  {
+    "word": "kazakhstan",
+    "difficulty": "hard",
+    "category": "countries"
+  },
+  {
+    "word": "madagascar",
+    "difficulty": "hard",
+    "category": "countries"
+  },
+  {
+    "word": "azerbaijan",
+    "difficulty": "hard",
+    "category": "countries"
+  },
+  {
+    "word": "mozambique",
+    "difficulty": "hard",
+    "category": "countries"
+  },
+  {
+    "word": "afghanistan",
+    "difficulty": "hard",
+    "category": "countries"
+  },
+  {
+    "word": "luxembourg",
+    "difficulty": "hard",
+    "category": "countries"
+  },
+  {
+    "word": "uzbekistan",
+    "difficulty": "hard",
+    "category": "countries"
+  },
+  {
+    "word": "mauritania",
+    "difficulty": "hard",
+    "category": "countries"
+  },
+  {
+    "word": "liechtenstein",
+    "difficulty": "hard",
+    "category": "countries"
+  },
+  {
+    "word": "chef",
+    "difficulty": "easy",
+    "category": "jobs"
+  },
+  {
+    "word": "nurse",
+    "difficulty": "easy",
+    "category": "jobs"
+  },
+  {
+    "word": "pilot",
+    "difficulty": "easy",
+    "category": "jobs"
+  },
+  {
+    "word": "actor",
+    "difficulty": "easy",
+    "category": "jobs"
+  },
+  {
+    "word": "baker",
+    "difficulty": "easy",
+    "category": "jobs"
+  },
+  {
+    "word": "coach",
+    "difficulty": "easy",
+    "category": "jobs"
+  },
+  {
+    "word": "guard",
+    "difficulty": "easy",
+    "category": "jobs"
+  },
+  {
+    "word": "clown",
+    "difficulty": "easy",
+    "category": "jobs"
+  },
+  {
+    "word": "farmer",
+    "difficulty": "easy",
+    "category": "jobs"
+  },
+  {
+    "word": "doctor",
+    "difficulty": "easy",
+    "category": "jobs"
+  },
+  {
+    "word": "dancer",
+    "difficulty": "easy",
+    "category": "jobs"
+  },
+  {
+    "word": "singer",
+    "difficulty": "easy",
+    "category": "jobs"
+  },
+  {
+    "word": "teacher",
+    "difficulty": "medium",
+    "category": "jobs"
+  },
+  {
+    "word": "dentist",
+    "difficulty": "medium",
+    "category": "jobs"
+  },
+  {
+    "word": "plumber",
+    "difficulty": "medium",
+    "category": "jobs"
+  },
+  {
+    "word": "painter",
+    "difficulty": "medium",
+    "category": "jobs"
+  },
+  {
+    "word": "butcher",
+    "difficulty": "medium",
+    "category": "jobs"
+  },
+  {
+    "word": "mechanic",
+    "difficulty": "medium",
+    "category": "jobs"
+  },
+  {
+    "word": "engineer",
+    "difficulty": "medium",
+    "category": "jobs"
+  },
+  {
+    "word": "librarian",
+    "difficulty": "medium",
+    "category": "jobs"
+  },
+  {
+    "word": "scientist",
+    "difficulty": "medium",
+    "category": "jobs"
+  },
+  {
+    "word": "firefighter",
+    "difficulty": "medium",
+    "category": "jobs"
+  },
+  {
+    "word": "electrician",
+    "difficulty": "medium",
+    "category": "jobs"
+  },
+  {
+    "word": "journalist",
+    "difficulty": "medium",
+    "category": "jobs"
+  },
+  {
+    "word": "veterinarian",
+    "difficulty": "hard",
+    "category": "jobs"
+  },
+  {
+    "word": "archaeologist",
+    "difficulty": "hard",
+    "category": "jobs"
+  },
+  {
+    "word": "choreographer",
+    "difficulty": "hard",
+    "category": "jobs"
+  },
+  {
+    "word": "cartographer",
+    "difficulty": "hard",
+    "category": "jobs"
+  },
+  {
+    "word": "meteorologist",
+    "difficulty": "hard",
+    "category": "jobs"
+  },
+  {
+    "word": "anesthesiologist",
+    "difficulty": "hard",
+    "category": "jobs"
+  },
+  {
+    "word": "paleontologist",
+    "difficulty": "hard",
+    "category": "jobs"
+  },
+  {
+    "word": "cardiologist",
+    "difficulty": "hard",
+    "category": "jobs"
+  },
+  {
+    "word": "upholsterer",
+    "difficulty": "hard",
+    "category": "jobs"
+  },
+  {
+    "word": "locksmith",
+    "difficulty": "hard",
+    "category": "jobs"
+  },
+  {
+    "word": "taxidermist",
+    "difficulty": "hard",
+    "category": "jobs"
+  },
+  {
+    "word": "orthodontist",
+    "difficulty": "hard",
+    "category": "jobs"
+  },
+  {
+    "word": "bus",
+    "difficulty": "easy",
+    "category": "vehicles"
+  },
+  {
+    "word": "van",
+    "difficulty": "easy",
+    "category": "vehicles"
+  },
+  {
+    "word": "bike",
+    "difficulty": "easy",
+    "category": "vehicles"
+  },
+  {
+    "word": "boat",
+    "difficulty": "easy",
+    "category": "vehicles"
+  },
+  {
+    "word": "jeep",
+    "difficulty": "easy",
+    "category": "vehicles"
+  },
+  {
+    "word": "taxi",
+    "difficulty": "easy",
+    "category": "vehicles"
+  },
+  {
+    "word": "train",
+    "difficulty": "easy",
+    "category": "vehicles"
+  },
+  {
+    "word": "plane",
+    "difficulty": "easy",
+    "category": "vehicles"
+  },
+  {
+    "word": "truck",
+    "difficulty": "easy",
+    "category": "vehicles"
+  },
+  {
+    "word": "scooter",
+    "difficulty": "easy",
+    "category": "vehicles"
+  },
+  {
+    "word": "tractor",
+    "difficulty": "easy",
+    "category": "vehicles"
+  },
+  {
+    "word": "motorcycle",
+    "difficulty": "medium",
+    "category": "vehicles"
+  },
+  {
+    "word": "submarine",
+    "difficulty": "medium",
+    "category": "vehicles"
+  },
+  {
+    "word": "ambulance",
+    "difficulty": "medium",
+    "category": "vehicles"
+  },
+  {
+    "word": "bulldozer",
+    "difficulty": "medium",
+    "category": "vehicles"
+  },
+  {
+    "word": "helicopter",
+    "difficulty": "medium",
+    "category": "vehicles"
+  },
+  {
+    "word": "sailboat",
+    "difficulty": "medium",
+    "category": "vehicles"
+  },
+  {
+    "word": "minivan",
+    "difficulty": "medium",
+    "category": "vehicles"
+  },
+  {
+    "word": "forklift",
+    "difficulty": "medium",
+    "category": "vehicles"
+  },
+  {
+    "word": "snowmobile",
+    "difficulty": "medium",
+    "category": "vehicles"
+  },
+  {
+    "word": "limousine",
+    "difficulty": "medium",
+    "category": "vehicles"
+  },
+  {
+    "word": "monorail",
+    "difficulty": "medium",
+    "category": "vehicles"
+  },
+  {
+    "word": "tricycle",
+    "difficulty": "medium",
+    "category": "vehicles"
+  },
+  {
+    "word": "hovercraft",
+    "difficulty": "hard",
+    "category": "vehicles"
+  },
+  {
+    "word": "zeppelin",
+    "difficulty": "hard",
+    "category": "vehicles"
+  },
+  {
+    "word": "catamaran",
+    "difficulty": "hard",
+    "category": "vehicles"
+  },
+  {
+    "word": "locomotive",
+    "difficulty": "hard",
+    "category": "vehicles"
+  },
+  {
+    "word": "snowplow",
+    "difficulty": "hard",
+    "category": "vehicles"
+  },
+  {
+    "word": "bobsled",
+    "difficulty": "hard",
+    "category": "vehicles"
+  },
+  {
+    "word": "gondola",
+    "difficulty": "hard",
+    "category": "vehicles"
+  },
+  {
+    "word": "rickshaw",
+    "difficulty": "hard",
+    "category": "vehicles"
+  },
+  {
+    "word": "stagecoach",
+    "difficulty": "hard",
+    "category": "vehicles"
+  },
+  {
+    "word": "icebreaker",
+    "difficulty": "hard",
+    "category": "vehicles"
+  },
+  {
+    "word": "monster truck",
+    "difficulty": "hard",
+    "category": "vehicles"
+  },
+  {
+    "word": "aircraft carrier",
+    "difficulty": "hard",
+    "category": "vehicles"
+  },
+  {
+    "word": "sock",
+    "difficulty": "easy",
+    "category": "clothing"
+  },
+  {
+    "word": "coat",
+    "difficulty": "easy",
+    "category": "clothing"
+  },
+  {
+    "word": "shirt",
+    "difficulty": "easy",
+    "category": "clothing"
+  },
+  {
+    "word": "dress",
+    "difficulty": "easy",
+    "category": "clothing"
+  },
+  {
+    "word": "glove",
+    "difficulty": "easy",
+    "category": "clothing"
+  },
+  {
+    "word": "scarf",
+    "difficulty": "easy",
+    "category": "clothing"
+  },
+  {
+    "word": "boot",
+    "difficulty": "easy",
+    "category": "clothing"
+  },
+  {
+    "word": "belt",
+    "difficulty": "easy",
+    "category": "clothing"
+  },
+  {
+    "word": "jeans",
+    "difficulty": "easy",
+    "category": "clothing"
+  },
+  {
+    "word": "jacket",
+    "difficulty": "easy",
+    "category": "clothing"
+  },
+  {
+    "word": "sweater",
+    "difficulty": "easy",
+    "category": "clothing"
+  },
+  {
+    "word": "pajamas",
+    "difficulty": "medium",
+    "category": "clothing"
+  },
+  {
+    "word": "necklace",
+    "difficulty": "medium",
+    "category": "clothing"
+  },
+  {
+    "word": "sneakers",
+    "difficulty": "medium",
+    "category": "clothing"
+  },
+  {
+    "word": "sunglasses",
+    "difficulty": "medium",
+    "category": "clothing"
+  },
+  {
+    "word": "raincoat",
+    "difficulty": "medium",
+    "category": "clothing"
+  },
+  {
+    "word": "sombrero",
+    "difficulty": "medium",
+    "category": "clothing"
+  },
+  {
+    "word": "turban",
+    "difficulty": "medium",
+    "category": "clothing"
+  },
+  {
+    "word": "overalls",
+    "difficulty": "medium",
+    "category": "clothing"
+  },
+  {
+    "word": "swimsuit",
+    "difficulty": "medium",
+    "category": "clothing"
+  },
+  {
+    "word": "cardigan",
+    "difficulty": "medium",
+    "category": "clothing"
+  },
+  {
+    "word": "poncho",
+    "difficulty": "medium",
+    "category": "clothing"
+  },
+  {
+    "word": "earrings",
+    "difficulty": "medium",
+    "category": "clothing"
+  },
+  {
+    "word": "kimono",
+    "difficulty": "hard",
+    "category": "clothing"
+  },
+  {
+    "word": "tuxedo",
+    "difficulty": "hard",
+    "category": "clothing"
+  },
+  {
+    "word": "petticoat",
+    "difficulty": "hard",
+    "category": "clothing"
+  },
+  {
+    "word": "lederhosen",
+    "difficulty": "hard",
+    "category": "clothing"
+  },
+  {
+    "word": "waistcoat",
+    "difficulty": "hard",
+    "category": "clothing"
+  },
+  {
+    "word": "balaclava",
+    "difficulty": "hard",
+    "category": "clothing"
+  },
+  {
+    "word": "pantsuit",
+    "difficulty": "hard",
+    "category": "clothing"
+  },
+  {
+    "word": "cummerbund",
+    "difficulty": "hard",
+    "category": "clothing"
+  },
+  {
+    "word": "dungarees",
+    "difficulty": "hard",
+    "category": "clothing"
+  },
+  {
+    "word": "jumpsuit",
+    "difficulty": "hard",
+    "category": "clothing"
+  },
+  {
+    "word": "trench coat",
+    "difficulty": "hard",
+    "category": "clothing"
+  },
+  {
+    "word": "wedding gown",
+    "difficulty": "hard",
+    "category": "clothing"
+  },
+  {
+    "word": "eye",
+    "difficulty": "easy",
+    "category": "body parts"
+  },
+  {
+    "word": "ear",
+    "difficulty": "easy",
+    "category": "body parts"
+  },
+  {
+    "word": "arm",
+    "difficulty": "easy",
+    "category": "body parts"
+  },
+  {
+    "word": "leg",
+    "difficulty": "easy",
+    "category": "body parts"
+  },
+  {
+    "word": "hand",
+    "difficulty": "easy",
+    "category": "body parts"
+  },
+  {
+    "word": "foot",
+    "difficulty": "easy",
+    "category": "body parts"
+  },
+  {
+    "word": "nose",
+    "difficulty": "easy",
+    "category": "body parts"
+  },
+  {
+    "word": "head",
+    "difficulty": "easy",
+    "category": "body parts"
+  },
+  {
+    "word": "chin",
+    "difficulty": "easy",
+    "category": "body parts"
+  },
+  {
+    "word": "lip",
+    "difficulty": "easy",
+    "category": "body parts"
+  },
+  {
+    "word": "toe",
+    "difficulty": "easy",
+    "category": "body parts"
+  },
+  {
+    "word": "hair",
+    "difficulty": "easy",
+    "category": "body parts"
+  },
+  {
+    "word": "elbow",
+    "difficulty": "medium",
+    "category": "body parts"
+  },
+  {
+    "word": "shoulder",
+    "difficulty": "medium",
+    "category": "body parts"
+  },
+  {
+    "word": "stomach",
+    "difficulty": "medium",
+    "category": "body parts"
+  },
+  {
+    "word": "eyebrow",
+    "difficulty": "medium",
+    "category": "body parts"
+  },
+  {
+    "word": "forehead",
+    "difficulty": "medium",
+    "category": "body parts"
+  },
+  {
+    "word": "kneecap",
+    "difficulty": "medium",
+    "category": "body parts"
+  },
+  {
+    "word": "wrist",
+    "difficulty": "medium",
+    "category": "body parts"
+  },
+  {
+    "word": "ankle",
+    "difficulty": "medium",
+    "category": "body parts"
+  },
+  {
+    "word": "thumb",
+    "difficulty": "medium",
+    "category": "body parts"
+  },
+  {
+    "word": "tongue",
+    "difficulty": "medium",
+    "category": "body parts"
+  },
+  {
+    "word": "eyelash",
+    "difficulty": "medium",
+    "category": "body parts"
+  },
+  {
+    "word": "nostril",
+    "difficulty": "medium",
+    "category": "body parts"
+  },
+  {
+    "word": "cartilage",
+    "difficulty": "hard",
+    "category": "body parts"
+  },
+  {
+    "word": "esophagus",
+    "difficulty": "hard",
+    "category": "body parts"
+  },
+  {
+    "word": "diaphragm",
+    "difficulty": "hard",
+    "category": "body parts"
+  },
+  {
+    "word": "cerebellum",
+    "difficulty": "hard",
+    "category": "body parts"
+  },
+  {
+    "word": "appendix",
+    "difficulty": "hard",
+    "category": "body parts"
+  },
+  {
+    "word": "pancreas",
+    "difficulty": "hard",
+    "category": "body parts"
+  },
+  {
+    "word": "ligament",
+    "difficulty": "hard",
+    "category": "body parts"
+  },
+  {
+    "word": "vertebrae",
+    "difficulty": "hard",
+    "category": "body parts"
+  },
+  {
+    "word": "cranium",
+    "difficulty": "hard",
+    "category": "body parts"
+  },
+  {
+    "word": "sternum",
+    "difficulty": "hard",
+    "category": "body parts"
+  },
+  {
+    "word": "bicep",
+    "difficulty": "hard",
+    "category": "body parts"
+  },
+  {
+    "word": "larynx",
+    "difficulty": "hard",
+    "category": "body parts"
+  },
+  {
+    "word": "pencil",
+    "difficulty": "easy",
+    "category": "school"
+  },
+  {
+    "word": "chalk",
+    "difficulty": "easy",
+    "category": "school"
+  },
+  {
+    "word": "ruler",
+    "difficulty": "easy",
+    "category": "school"
+  },
+  {
+    "word": "eraser",
+    "difficulty": "easy",
+    "category": "school"
+  },
+  {
+    "word": "glue",
+    "difficulty": "easy",
+    "category": "school"
+  },
+  {
+    "word": "notebook",
+    "difficulty": "easy",
+    "category": "school"
+  },
+  {
+    "word": "crayon",
+    "difficulty": "easy",
+    "category": "school"
+  },
+  {
+    "word": "marker",
+    "difficulty": "easy",
+    "category": "school"
+  },
+  {
+    "word": "globe",
+    "difficulty": "easy",
+    "category": "school"
+  },
+  {
+    "word": "locker",
+    "difficulty": "easy",
+    "category": "school"
+  },
+  {
+    "word": "whiteboard",
+    "difficulty": "easy",
+    "category": "school"
+  },
+  {
+    "word": "calculator",
+    "difficulty": "easy",
+    "category": "school"
+  },
+  {
+    "word": "classroom",
+    "difficulty": "medium",
+    "category": "school"
+  },
+  {
+    "word": "homework",
+    "difficulty": "medium",
+    "category": "school"
+  },
+  {
+    "word": "textbook",
+    "difficulty": "medium",
+    "category": "school"
+  },
+  {
+    "word": "graduation",
+    "difficulty": "medium",
+    "category": "school"
+  },
+  {
+    "word": "principal",
+    "difficulty": "medium",
+    "category": "school"
+  },
+  {
+    "word": "cafeteria",
+    "difficulty": "medium",
+    "category": "school"
+  },
+  {
+    "word": "chalkboard",
+    "difficulty": "medium",
+    "category": "school"
+  },
+  {
+    "word": "detention",
+    "difficulty": "medium",
+    "category": "school"
+  },
+  {
+    "word": "semester",
+    "difficulty": "medium",
+    "category": "school"
+  },
+  {
+    "word": "timetable",
+    "difficulty": "medium",
+    "category": "school"
+  },
+  {
+    "word": "dictionary",
+    "difficulty": "medium",
+    "category": "school"
+  },
+  {
+    "word": "playground",
+    "difficulty": "medium",
+    "category": "school"
+  },
+  {
+    "word": "curriculum",
+    "difficulty": "hard",
+    "category": "school"
+  },
+  {
+    "word": "valedictorian",
+    "difficulty": "hard",
+    "category": "school"
+  },
+  {
+    "word": "extracurricular",
+    "difficulty": "hard",
+    "category": "school"
+  },
+  {
+    "word": "kindergarten",
+    "difficulty": "hard",
+    "category": "school"
+  },
+  {
+    "word": "algebra",
+    "difficulty": "hard",
+    "category": "school"
+  },
+  {
+    "word": "geometry",
+    "difficulty": "hard",
+    "category": "school"
+  },
+  {
+    "word": "chemistry",
+    "difficulty": "hard",
+    "category": "school"
+  },
+  {
+    "word": "university",
+    "difficulty": "hard",
+    "category": "school"
+  },
+  {
+    "word": "laboratory",
+    "difficulty": "hard",
+    "category": "school"
+  },
+  {
+    "word": "microscope",
+    "difficulty": "hard",
+    "category": "school"
+  },
+  {
+    "word": "scholarship",
+    "difficulty": "hard",
+    "category": "school"
+  },
+  {
+    "word": "thesis",
+    "difficulty": "hard",
+    "category": "school"
+  },
+  {
+    "word": "drum",
+    "difficulty": "easy",
+    "category": "music"
+  },
+  {
+    "word": "horn",
+    "difficulty": "easy",
+    "category": "music"
+  },
+  {
+    "word": "flute",
+    "difficulty": "easy",
+    "category": "music"
+  },
+  {
+    "word": "piano",
+    "difficulty": "easy",
+    "category": "music"
+  },
+  {
+    "word": "banjo",
+    "difficulty": "easy",
+    "category": "music"
+  },
+  {
+    "word": "choir",
+    "difficulty": "easy",
+    "category": "music"
+  },
+  {
+    "word": "song",
+    "difficulty": "easy",
+    "category": "music"
+  },
+  {
+    "word": "band",
+    "difficulty": "easy",
+    "category": "music"
+  },
+  {
+    "word": "beat",
+    "difficulty": "easy",
+    "category": "music"
+  },
+  {
+    "word": "tune",
+    "difficulty": "easy",
+    "category": "music"
+  },
+  {
+    "word": "note",
+    "difficulty": "easy",
+    "category": "music"
+  },
+  {
+    "word": "opera",
+    "difficulty": "easy",
+    "category": "music"
+  },
+  {
+    "word": "trumpet",
+    "difficulty": "medium",
+    "category": "music"
+  },
+  {
+    "word": "clarinet",
+    "difficulty": "medium",
+    "category": "music"
+  },
+  {
+    "word": "saxophone",
+    "difficulty": "medium",
+    "category": "music"
+  },
+  {
+    "word": "orchestra",
+    "difficulty": "medium",
+    "category": "music"
+  },
+  {
+    "word": "ukulele",
+    "difficulty": "medium",
+    "category": "music"
+  },
+  {
+    "word": "harmonica",
+    "difficulty": "medium",
+    "category": "music"
+  },
+  {
+    "word": "cymbals",
+    "difficulty": "medium",
+    "category": "music"
+  },
+  {
+    "word": "xylophone",
+    "difficulty": "medium",
+    "category": "music"
+  },
+  {
+    "word": "concert",
+    "difficulty": "medium",
+    "category": "music"
+  },
+  {
+    "word": "accordion",
+    "difficulty": "medium",
+    "category": "music"
+  },
+  {
+    "word": "bagpipes",
+    "difficulty": "medium",
+    "category": "music"
+  },
+  {
+    "word": "tambourine",
+    "difficulty": "medium",
+    "category": "music"
+  },
+  {
+    "word": "symphony",
+    "difficulty": "hard",
+    "category": "music"
+  },
+  {
+    "word": "philharmonic",
+    "difficulty": "hard",
+    "category": "music"
+  },
+  {
+    "word": "synthesizer",
+    "difficulty": "hard",
+    "category": "music"
+  },
+  {
+    "word": "glockenspiel",
+    "difficulty": "hard",
+    "category": "music"
+  },
+  {
+    "word": "contrabassoon",
+    "difficulty": "hard",
+    "category": "music"
+  },
+  {
+    "word": "conservatory",
+    "difficulty": "hard",
+    "category": "music"
+  },
+  {
+    "word": "crescendo",
+    "difficulty": "hard",
+    "category": "music"
+  },
+  {
+    "word": "orchestration",
+    "difficulty": "hard",
+    "category": "music"
+  },
+  {
+    "word": "virtuoso",
+    "difficulty": "hard",
+    "category": "music"
+  },
+  {
+    "word": "ensemble",
+    "difficulty": "hard",
+    "category": "music"
+  },
+  {
+    "word": "arpeggio",
+    "difficulty": "hard",
+    "category": "music"
+  },
+  {
+    "word": "serenade",
+    "difficulty": "hard",
+    "category": "music"
+  },
+  {
+    "word": "batman",
+    "difficulty": "easy",
+    "category": "superheroes"
+  },
+  {
+    "word": "superman",
+    "difficulty": "easy",
+    "category": "superheroes"
+  },
+  {
+    "word": "spiderman",
+    "difficulty": "easy",
+    "category": "superheroes"
+  },
+  {
+    "word": "hulk",
+    "difficulty": "easy",
+    "category": "superheroes"
+  },
+  {
+    "word": "thor",
+    "difficulty": "easy",
+    "category": "superheroes"
+  },
+  {
+    "word": "flash",
+    "difficulty": "easy",
+    "category": "superheroes"
+  },
+  {
+    "word": "robin",
+    "difficulty": "easy",
+    "category": "superheroes"
+  },
+  {
+    "word": "catwoman",
+    "difficulty": "easy",
+    "category": "superheroes"
+  },
+  {
+    "word": "ironman",
+    "difficulty": "easy",
+    "category": "superheroes"
+  },
+  {
+    "word": "antman",
+    "difficulty": "easy",
+    "category": "superheroes"
+  },
+  {
+    "word": "wolverine",
+    "difficulty": "easy",
+    "category": "superheroes"
+  },
+  {
+    "word": "deadpool",
+    "difficulty": "easy",
+    "category": "superheroes"
+  },
+  {
+    "word": "aquaman",
+    "difficulty": "medium",
+    "category": "superheroes"
+  },
+  {
+    "word": "hawkeye",
+    "difficulty": "medium",
+    "category": "superheroes"
+  },
+  {
+    "word": "black widow",
+    "difficulty": "medium",
+    "category": "superheroes"
+  },
+  {
+    "word": "daredevil",
+    "difficulty": "medium",
+    "category": "superheroes"
+  },
+  {
+    "word": "supergirl",
+    "difficulty": "medium",
+    "category": "superheroes"
+  },
+  {
+    "word": "nightwing",
+    "difficulty": "medium",
+    "category": "superheroes"
+  },
+  {
+    "word": "cyborg",
+    "difficulty": "medium",
+    "category": "superheroes"
+  },
+  {
+    "word": "starlord",
+    "difficulty": "medium",
+    "category": "superheroes"
+  },
+  {
+    "word": "groot",
+    "difficulty": "medium",
+    "category": "superheroes"
+  },
+  {
+    "word": "vision",
+    "difficulty": "medium",
+    "category": "superheroes"
+  },
+  {
+    "word": "falcon",
+    "difficulty": "medium",
+    "category": "superheroes"
+  },
+  {
+    "word": "gambit",
+    "difficulty": "medium",
+    "category": "superheroes"
+  },
+  {
+    "word": "quicksilver",
+    "difficulty": "hard",
+    "category": "superheroes"
+  },
+  {
+    "word": "scarlet witch",
+    "difficulty": "hard",
+    "category": "superheroes"
+  },
+  {
+    "word": "doctor strange",
+    "difficulty": "hard",
+    "category": "superheroes"
+  },
+  {
+    "word": "green lantern",
+    "difficulty": "hard",
+    "category": "superheroes"
+  },
+  {
+    "word": "wonder woman",
+    "difficulty": "hard",
+    "category": "superheroes"
+  },
+  {
+    "word": "captain marvel",
+    "difficulty": "hard",
+    "category": "superheroes"
+  },
+  {
+    "word": "black panther",
+    "difficulty": "hard",
+    "category": "superheroes"
+  },
+  {
+    "word": "professor x",
+    "difficulty": "hard",
+    "category": "superheroes"
+  },
+  {
+    "word": "mr fantastic",
+    "difficulty": "hard",
+    "category": "superheroes"
+  },
+  {
+    "word": "invisible woman",
+    "difficulty": "hard",
+    "category": "superheroes"
+  },
+  {
+    "word": "martian manhunter",
+    "difficulty": "hard",
+    "category": "superheroes"
+  },
+  {
+    "word": "green arrow",
+    "difficulty": "hard",
+    "category": "superheroes"
+  }
 ]

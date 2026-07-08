@@ -162,7 +162,7 @@ const DrawingCanvas = forwardRef(function DrawingCanvas(
     <div ref={containerRef} className="relative h-full w-full touch-none">
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 h-full w-full rounded-lg"
+        className="absolute inset-0 h-full w-full touch-none rounded-lg"
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}

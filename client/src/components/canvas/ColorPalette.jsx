@@ -7,8 +7,8 @@ const PRESET_COLORS = [
 
 function ColorPalette({ selectedColor, onSelect }) {
   return (
-    <div className="flex items-center gap-2">
-      <div className="grid grid-cols-8 gap-1">
+    <div className="flex shrink-0 items-center gap-2">
+      <div className="grid grid-cols-8 grid-rows-2 gap-1">
         {PRESET_COLORS.map((c) => (
           <button
             key={c}
@@ -16,7 +16,7 @@ function ColorPalette({ selectedColor, onSelect }) {
             aria-pressed={selectedColor === c}
             onClick={() => onSelect(c)}
             style={{ backgroundColor: c }}
-            className={`h-6 w-6 rounded border-2 ${selectedColor === c ? 'border-ink-coral' : 'border-white/20'}`}
+            className={`h-11 w-11 shrink-0 rounded border-2 ${selectedColor === c ? 'border-ink-coral' : 'border-white/20'}`}
           />
         ))}
       </div>
@@ -25,7 +25,7 @@ function ColorPalette({ selectedColor, onSelect }) {
         value={selectedColor}
         onChange={(e) => onSelect(e.target.value)}
         aria-label="Custom color"
-        className="h-7 w-7 cursor-pointer rounded border border-white/20 bg-transparent"
+        className="h-11 w-11 shrink-0 cursor-pointer rounded border border-white/20 bg-transparent"
       />
     </div>
   )

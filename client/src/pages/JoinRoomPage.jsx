@@ -11,7 +11,7 @@ function JoinRoomPage() {
   const { socket } = useSocket()
   const { dispatch } = useRoom()
 
-  const [roomCode, setRoomCode] = useState(searchParams.get('code') || '')
+  const [roomCode, setRoomCode] = useState((searchParams.get('code') || '').replace(/\D/g, '').slice(0, 6))
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
 
@@ -25,7 +25,7 @@ function JoinRoomPage() {
 
     socket
       .timeout(5000)
-      .emit('room:join', { roomCode: roomCode.trim().toUpperCase(), nickname: profile.nickname, avatar: profile.avatar }, (ackErr, response) => {
+      .emit('room:join', { roomCode: roomCode.trim(), nickname: profile.nickname, avatar: profile.avatar }, (ackErr, response) => {
         setIsSubmitting(false)
         if (ackErr) {
           setError('Server did not respond, please try again.')
@@ -35,11 +35,22 @@ function JoinRoomPage() {
           setError(response.error)
           return
         }
-        dispatch({ type: 'SET_ROOM', roomCode: response.room.room_code, settings: response.room.settings })
+        dispatch({
+          type: 'SET_ROOM',
+          roomCode: response.room.room_code,
+          settings: response.room.settings,
+          customWordCount: response.room.custom_word_count,
+        })
         dispatch({ type: 'SET_PLAYERS', players: response.room.players })
-        dispatch({ type: 'SET_SELF', self: { playerId: response.playerId, ...profile } })
+        dispatch({ type: 'SET_SELF', self: { playerId: response.playerId, ...profile, isSpectator: response.isSpectator } })
         dispatch({ type: 'SET_CANVAS_STROKES', strokes: response.room.canvas_strokes || [] })
-        navigate(`/room/${response.room.room_code}/lobby`)
+
+        if (response.room.status !== 'lobby') {
+          dispatch({ type: 'SET_GAME_SNAPSHOT', snapshot: response.game_snapshot })
+          navigate(`/room/${response.room.room_code}/game`)
+        } else {
+          navigate(`/room/${response.room.room_code}/lobby`)
+        }
       })
   }
 
@@ -50,10 +61,11 @@ function JoinRoomPage() {
       <div className="flex w-full max-w-md flex-col gap-4">
         <input
           type="text"
+          inputMode="numeric"
+          pattern="[0-9]*"
           value={roomCode}
-          onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
-          placeholder="INKSY-4821"
-          maxLength={10}
+          onChange={(e) => setRoomCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+          placeholder="482913"
           className="rounded-lg bg-white/5 px-4 py-3 text-center font-heading text-xl tracking-widest text-ink-text outline-none focus:ring-2 focus:ring-ink-coral"
         />
 
