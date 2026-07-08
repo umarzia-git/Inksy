@@ -3,10 +3,27 @@ import { io } from 'socket.io-client'
 
 export const SocketContext = createContext({ socket: null, connected: false })
 
-// Falls back to whatever host the page itself was loaded from (same hostname,
-// port 4000) rather than a hardcoded "localhost" — so the same build works
-// whether it's opened via localhost or a LAN IP (e.g. testing on a phone).
-const SERVER_URL = import.meta.env.VITE_SERVER_URL || `${window.location.protocol}//${window.location.hostname}:4000`
+const isLocalDevHost =
+  ['localhost', '127.0.0.1'].includes(window.location.hostname) ||
+  /^(10\.|172\.(1[6-9]|2\d|3[01])\.|192\.168\.)/.test(window.location.hostname)
+
+// Deployed builds (Vercel, etc.) must always be given a real backend URL via
+// VITE_SERVER_URL (e.g. the Railway backend) — a static host has no port 4000
+// to fall back to. The same-host:4000 guess only ever makes sense for local
+// or LAN-IP dev (e.g. testing on a phone against a machine running the server).
+let SERVER_URL = import.meta.env.VITE_SERVER_URL
+if (!SERVER_URL) {
+  if (isLocalDevHost) {
+    SERVER_URL = `${window.location.protocol}//${window.location.hostname}:4000`
+  } else {
+    console.error(
+      'VITE_SERVER_URL is not set. The app cannot reach a backend from this host — ' +
+        'set VITE_SERVER_URL to the deployed server URL (e.g. https://inksy-production.up.railway.app) ' +
+        'in the frontend deployment\'s environment variables.',
+    )
+    SERVER_URL = `${window.location.protocol}//${window.location.hostname}:4000`
+  }
+}
 
 export function SocketProvider({ children }) {
   const [socket] = useState(() =>
