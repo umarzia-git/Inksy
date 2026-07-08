@@ -1,22 +1,19 @@
-@import "tailwindcss";
-
-@theme {
-  --color-ink-bg: #0f0e17;
-  --color-ink-coral: #ff6b6b;
-  --color-ink-yellow: #ffd93d;
-  --color-ink-canvas: #fffdf7;
-  --color-ink-text: #fffffe;
-
-  --font-heading: "Fredoka One", system-ui, sans-serif;
-  --font-body: "Nunito", system-ui, sans-serif;
-  --font-hand: "Caveat", "Comic Sans MS", cursive;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
   margin: 0;
-  background-color: var(--color-ink-bg);
-  color: var(--color-ink-text);
-  font-family: var(--font-body);
+  background-color: #0f0e17;
+  color: #fffffe;
+  font-family: "Nunito", system-ui, sans-serif;
+}
+
+/* Tailwind v4 renamed bg-gradient-to-* utilities to bg-linear-to-*; this shim
+   keeps that v4 class name working under the v3 toolchain without editing
+   the component that uses it. */
+.bg-linear-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
 
 /* Reactions float straight up from a fixed horizontal spot (--reaction-x,
