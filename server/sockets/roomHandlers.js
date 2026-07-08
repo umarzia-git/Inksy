@@ -63,7 +63,10 @@ export function registerRoomHandlers(io, socket, withErrorHandling) {
 
       socket.data.roomCode = room.room_code
       socket.data.playerId = playerId
-      await socket.join(room.room_code)
+      // Joining a private room keyed by the player's own id lets the server
+      // address this exact player directly (io.to(playerId)) without having
+      // to search through every socket in the room to find them.
+      await socket.join([room.room_code, playerId])
 
       callback?.({ room: toPublicRoom(room), playerId })
     }),
@@ -89,7 +92,10 @@ export function registerRoomHandlers(io, socket, withErrorHandling) {
         socket.data.roomCode = room.room_code
         socket.data.playerId = playerId
         socket.data.isSpectator = isSpectator
-        await socket.join(room.room_code)
+        // Joining a private room keyed by the player's own id lets the server
+        // address this exact player directly (io.to(playerId)) without having
+        // to search through every socket in the room to find them.
+        await socket.join([room.room_code, playerId])
 
         const gameSnapshot = buildGameSnapshot(room)
         callback?.({ room: toPublicRoom(room), playerId, isSpectator, isReconnect, game_snapshot: gameSnapshot })

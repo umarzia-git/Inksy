@@ -43,10 +43,11 @@ export function buildGameSnapshot(room) {
   }
 }
 
-async function emitToPlayer(io, roomCode, playerId, event, payload) {
-  const sockets = await io.in(roomCode).fetchSockets()
-  const target = sockets.find((s) => s.data.playerId === playerId)
-  target?.emit(event, payload)
+// Every socket joins a private room keyed by its own playerId on connect (see
+// roomHandlers.js), so a specific player can always be addressed directly —
+// no need to enumerate every socket in the room and search for a match.
+function emitToPlayer(io, playerId, event, payload) {
+  io.to(playerId).emit(event, payload)
 }
 
 function publicPlayers(room) {
@@ -134,7 +135,7 @@ export async function startTurn(io, roomCode) {
     turn_ends_at: room.game_state.turn_ends_at,
     players: publicPlayers(room),
   })
-  await emitToPlayer(io, roomCode, drawerId, SOCKET_EVENTS.WORD_CHOICES, { choices: room.game_state.word_choices })
+  emitToPlayer(io, drawerId, SOCKET_EVENTS.WORD_CHOICES, { choices: room.game_state.word_choices })
 
   startRoundTimerBroadcast(io, roomCode, room.game_state.turn_ends_at)
   setRoomTimer(roomCode, 'phase', () => autoPickWord(io, roomCode), WORD_SELECT_DURATION_MS)
@@ -185,7 +186,7 @@ async function beginDrawing(io, roomCode, word) {
     turn_ends_at: room.game_state.turn_ends_at,
     players: publicPlayers(room),
   })
-  await emitToPlayer(io, roomCode, drawer.player_id, SOCKET_EVENTS.WORD_REVEAL, { word })
+  emitToPlayer(io, drawer.player_id, SOCKET_EVENTS.WORD_REVEAL, { word })
 
   startRoundTimerBroadcast(io, roomCode, room.game_state.turn_ends_at)
   setRoomTimer(roomCode, 'hint1', () => revealHint(io, roomCode), Math.round(drawTimeMs * HINT_1_FRACTION))
