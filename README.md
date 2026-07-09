@@ -54,11 +54,15 @@ It's built as a full-stack real-time app: a server-authoritative game state mach
 
 ## Screenshots
 
-> _Coming soon — gameplay screenshots and a demo GIF will go here._
+>| Home Screen | Game Screen | Winner Screen |
+|-------------|-------------|---------------|
+| Home Screen | Lobby Screen |
+|-------------|--------------|
+| ![Home](screenshots/homescreen.png) | ![Lobby](screenshots/lobby.png) |
 
-| Lobby | Drawing | Scoreboard |
-|---|---|---|
-| _placeholder_ | _placeholder_ | _placeholder_ |
+| Game Screen | Winner Screen |
+|-------------|---------------|
+| ![Game](screenshots/gameScreen.png) | ![Winner](screenshots/winner.png) |
 
 ## Running Locally
 
@@ -140,6 +144,5 @@ node server/db/seed_words.js
 
 <div align="center">
 
-Built with 🖍️ — see [`CLAUDE.md`](CLAUDE.md) for project conventions and build status.
 
 </div>
