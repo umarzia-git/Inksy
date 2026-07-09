@@ -6,3 +6,5 @@ build/
 *.log
 .DS_Store
 .claude/
+CLAUDE.md
+claude.md
