@@ -1,3 +1,5 @@
+import { WORD_CATEGORIES } from './gameConstants.js'
+
 export function isValidNickname(nickname) {
   return typeof nickname === 'string' && nickname.trim().length > 0 && nickname.trim().length <= 20
 }
@@ -15,7 +17,15 @@ export function isValidSettings(settings) {
   const validRounds = [3, 5, 7].includes(settings.rounds)
   const validDrawTime = [60, 90, 120].includes(settings.draw_time_sec)
   const validDifficulty = ['easy', 'medium', 'hard', 'mixed'].includes(settings.difficulty)
-  return validRounds && validDrawTime && validDifficulty
+  const validCategories = isValidCategories(settings.categories)
+  return validRounds && validDrawTime && validDifficulty && validCategories
+}
+
+// The host must leave at least one category selected — an empty list would
+// mean no word could ever be picked.
+export function isValidCategories(categories) {
+  if (!Array.isArray(categories) || categories.length === 0) return false
+  return categories.every((c) => WORD_CATEGORIES.includes(c))
 }
 
 // Custom words are optional — an empty list just means the feature is off. If the

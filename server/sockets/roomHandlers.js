@@ -99,7 +99,11 @@ export function registerRoomHandlers(io, socket, withErrorHandling) {
 
         const gameSnapshot = buildGameSnapshot(room)
         callback?.({ room: toPublicRoom(room), playerId, isSpectator, isReconnect, game_snapshot: gameSnapshot })
-        socket.to(room.room_code).emit(SOCKET_EVENTS.PLAYER_JOINED, { room: toPublicRoom(room) })
+        // io.to (not socket.to) so the joining player's own socket also gets this
+        // broadcast — harmless if their client already has the same list via the
+        // callback above, but it means the lobby's live player list is driven by
+        // a single consistent broadcast path for everyone in the room.
+        io.to(room.room_code).emit(SOCKET_EVENTS.PLAYER_JOINED, { room: toPublicRoom(room) })
 
         // A reconnecting drawer needs their word re-sent privately — it's never
         // part of the broadcast snapshot above.
@@ -113,6 +117,21 @@ export function registerRoomHandlers(io, socket, withErrorHandling) {
       } catch (err) {
         callback?.({ error: err.message })
       }
+    }),
+  )
+
+  // Called by LobbyPage right after it mounts, so a client that missed a
+  // player:joined broadcast (e.g. it fired before this client finished
+  // navigating and attaching listeners — the same class of race fixed for
+  // the game screen by game:sync) always ends up with the true, complete
+  // player list instead of a stale one.
+  socket.on(
+    'room:sync',
+    withErrorHandling(socket, 'room:sync', async ({ roomCode } = {}, callback) => {
+      if (!socket.data.roomCode || socket.data.roomCode !== roomCode) return callback?.({ room: null })
+      const room = await getRoomByCode(roomCode)
+      if (!room) return callback?.({ room: null })
+      callback?.({ room: toPublicRoom(room) })
     }),
   )
 

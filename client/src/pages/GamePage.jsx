@@ -28,6 +28,11 @@ function GamePage() {
   const [tool, setTool] = useState('pencil')
   const [color, setColor] = useState('#000000')
   const [brushSize, setBrushSize] = useState(6)
+  // The eraser needs a much larger default/range than the pencil — a 6px
+  // eraser (the pencil default) took forever to clear anything. Tracked
+  // separately so switching tools doesn't clobber either size choice.
+  const [eraserSize, setEraserSize] = useState(30)
+  const activeBrushSize = tool === 'eraser' ? eraserSize : brushSize
   const [strokeCount, setStrokeCount] = useState(0)
   const canvasRef = useRef(null)
   const [muted, setMuted] = useLocalStorage('inksy:soundMuted', false)
@@ -137,8 +142,10 @@ function GamePage() {
           onToolChange={setTool}
           color={color}
           onColorChange={setColor}
-          brushSize={brushSize}
-          onBrushSizeChange={setBrushSize}
+          brushSize={activeBrushSize}
+          onBrushSizeChange={tool === 'eraser' ? setEraserSize : setBrushSize}
+          brushSizeMin={tool === 'eraser' ? 10 : 2}
+          brushSizeMax={tool === 'eraser' ? 80 : 30}
           onUndo={() => canvasRef.current?.undo()}
           onClear={() => canvasRef.current?.clear()}
           canUndo={strokeCount > 0}
@@ -153,7 +160,7 @@ function GamePage() {
               socket={socket}
               tool={tool}
               color={color}
-              brushSize={brushSize}
+              brushSize={activeBrushSize}
               initialStrokes={state.canvasStrokes}
               onStrokeCountChange={setStrokeCount}
               disabled={canvasDisabled}

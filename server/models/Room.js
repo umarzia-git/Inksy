@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import { WORD_CATEGORIES } from '../utils/gameConstants.js'
 
 const { Schema } = mongoose
 
@@ -50,6 +51,7 @@ const roomSchema = new Schema(
       rounds: { type: Number, enum: [3, 5, 7], default: 3 },
       draw_time_sec: { type: Number, enum: [60, 90, 120], default: 90 },
       difficulty: { type: String, enum: ['easy', 'medium', 'hard', 'mixed'], default: 'mixed' },
+      categories: { type: [String], default: WORD_CATEGORIES },
     },
     status: {
       type: String,

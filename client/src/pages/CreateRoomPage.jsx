@@ -3,10 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import { useLocalStorage } from '../hooks/useLocalStorage.js'
 import { useSocket } from '../hooks/useSocket.js'
 import { useRoom } from '../hooks/useRoom.js'
+import { WORD_CATEGORIES } from '../utils/constants.js'
 
 const ROUND_OPTIONS = [3, 5, 7]
 const DRAW_TIME_OPTIONS = [60, 90, 120]
 const DIFFICULTY_OPTIONS = ['easy', 'medium', 'hard', 'mixed']
+const ALL_CATEGORY_SLUGS = WORD_CATEGORIES.map((c) => c.slug)
 
 function CreateRoomPage() {
   const navigate = useNavigate()
@@ -17,9 +19,22 @@ function CreateRoomPage() {
   const [rounds, setRounds] = useState(3)
   const [drawTimeSec, setDrawTimeSec] = useState(90)
   const [difficulty, setDifficulty] = useState('mixed')
+  const [categories, setCategories] = useState(ALL_CATEGORY_SLUGS)
   const [customWordsInput, setCustomWordsInput] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
+
+  const allCategoriesSelected = categories.length === ALL_CATEGORY_SLUGS.length
+
+  function toggleCategory(slug) {
+    setCategories((current) =>
+      current.includes(slug) ? current.filter((c) => c !== slug) : [...current, slug],
+    )
+  }
+
+  function toggleAllCategories() {
+    setCategories(allCategoriesSelected ? [] : ALL_CATEGORY_SLUGS)
+  }
 
   useEffect(() => {
     if (!profile.nickname || !profile.avatar) navigate('/')
@@ -37,6 +52,10 @@ function CreateRoomPage() {
       setError(`Add at least 10 custom words (you have ${customWords.length}), or clear the field to skip custom words.`)
       return
     }
+    if (categories.length === 0) {
+      setError('Select at least 1 word category.')
+      return
+    }
 
     setIsSubmitting(true)
     setError('')
@@ -48,7 +67,7 @@ function CreateRoomPage() {
         {
           nickname: profile.nickname,
           avatar: profile.avatar,
-          settings: { rounds, draw_time_sec: drawTimeSec, difficulty },
+          settings: { rounds, draw_time_sec: drawTimeSec, difficulty, categories },
           customWords,
         },
         (ackErr, response) => {
@@ -135,6 +154,39 @@ function CreateRoomPage() {
         </fieldset>
 
         <fieldset className="flex flex-col gap-2">
+          <div className="flex items-center justify-between">
+            <legend className="text-sm font-semibold uppercase tracking-wide text-ink-text/60">Word Categories</legend>
+            <button
+              type="button"
+              onClick={toggleAllCategories}
+              className="text-xs font-semibold uppercase tracking-wide text-ink-yellow underline"
+            >
+              {allCategoriesSelected ? 'Deselect All' : 'All Categories'}
+            </button>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {WORD_CATEGORIES.map((c) => {
+              const selected = categories.includes(c.slug)
+              return (
+                <button
+                  key={c.slug}
+                  type="button"
+                  aria-pressed={selected}
+                  onClick={() => toggleCategory(c.slug)}
+                  className={`flex h-11 items-center gap-1.5 rounded-full px-4 text-sm font-semibold transition ${
+                    selected ? 'bg-ink-coral text-ink-bg' : 'bg-white/5 text-ink-text/60 hover:bg-white/10'
+                  }`}
+                >
+                  <span>{c.emoji}</span>
+                  <span>{c.label}</span>
+                </button>
+              )
+            })}
+          </div>
+          {categories.length === 0 && <p className="text-xs text-ink-coral">Select at least 1 category.</p>}
+        </fieldset>
+
+        <fieldset className="flex flex-col gap-2">
           <legend className="text-sm font-semibold uppercase tracking-wide text-ink-text/60">
             Custom words (optional)
           </legend>
@@ -156,7 +208,7 @@ function CreateRoomPage() {
 
         <button
           type="button"
-          disabled={isSubmitting}
+          disabled={isSubmitting || categories.length === 0}
           onClick={handleCreate}
           className="rounded-lg bg-ink-coral px-6 py-3 font-heading text-lg text-ink-bg transition disabled:opacity-40"
         >

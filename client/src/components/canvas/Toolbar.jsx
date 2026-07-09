@@ -9,7 +9,20 @@ const TOOLS = [
   { id: 'circle', label: '◯' },
 ]
 
-function Toolbar({ tool, onToolChange, color, onColorChange, brushSize, onBrushSizeChange, onUndo, onClear, canUndo, disabled }) {
+function Toolbar({
+  tool,
+  onToolChange,
+  color,
+  onColorChange,
+  brushSize,
+  onBrushSizeChange,
+  brushSizeMin,
+  brushSizeMax,
+  onUndo,
+  onClear,
+  canUndo,
+  disabled,
+}) {
   return (
     <div className="flex flex-nowrap items-center gap-3 overflow-x-auto border-b border-white/10 p-2">
       <div className="flex shrink-0 gap-1">
@@ -30,7 +43,7 @@ function Toolbar({ tool, onToolChange, color, onColorChange, brushSize, onBrushS
       </div>
 
       <ColorPalette selectedColor={color} onSelect={onColorChange} />
-      <BrushSizeSlider value={brushSize} onChange={onBrushSizeChange} />
+      <BrushSizeSlider value={brushSize} onChange={onBrushSizeChange} min={brushSizeMin} max={brushSizeMax} />
 
       <div className="ml-auto flex shrink-0 gap-1">
         <button

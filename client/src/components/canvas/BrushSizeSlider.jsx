@@ -1,10 +1,10 @@
-function BrushSizeSlider({ value, onChange }) {
+function BrushSizeSlider({ value, onChange, min = 2, max = 30 }) {
   return (
     <div className="flex shrink-0 items-center gap-2">
       <input
         type="range"
-        min={2}
-        max={30}
+        min={min}
+        max={max}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
         className="h-11 w-24 accent-ink-coral"

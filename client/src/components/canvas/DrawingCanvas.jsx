@@ -1,6 +1,17 @@
-import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef } from 'react'
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef } from 'react'
 import { CANVAS_BG, drawStroke } from '../../utils/canvasHelpers.js'
 import { SOCKET_EVENTS } from '../../utils/socketEvents.js'
+
+// A ring cursor sized to match the eraser's actual footprint, so it's obvious
+// how much will be erased before you click — plain crosshair/arrow gave no
+// sense of scale, which made the (previously tiny, fixed) eraser feel even
+// slower to use than it was.
+function eraserCursor(size) {
+  const diameter = Math.round(Math.max(8, Math.min(size, 100)))
+  const radius = diameter / 2
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='${diameter}' height='${diameter}'><circle cx='${radius}' cy='${radius}' r='${radius - 1}' fill='rgba(255,255,255,0.35)' stroke='%23000000' stroke-width='1.5'/></svg>`
+  return `url("data:image/svg+xml,${svg}") ${radius} ${radius}, crosshair`
+}
 
 const DrawingCanvas = forwardRef(function DrawingCanvas(
   { roomCode, playerId, socket, tool, color, brushSize, initialStrokes, onStrokeCountChange, disabled = false },
@@ -11,6 +22,8 @@ const DrawingCanvas = forwardRef(function DrawingCanvas(
   const strokesRef = useRef(initialStrokes ? [...initialStrokes] : [])
   const currentStrokeRef = useRef(null)
   const sizeRef = useRef({ width: 0, height: 0 })
+
+  const cursor = useMemo(() => (tool === 'eraser' ? eraserCursor(brushSize) : undefined), [tool, brushSize])
 
   const redraw = useCallback(() => {
     const canvas = canvasRef.current
@@ -163,6 +176,7 @@ const DrawingCanvas = forwardRef(function DrawingCanvas(
       <canvas
         ref={canvasRef}
         className="absolute inset-0 h-full w-full touch-none rounded-lg"
+        style={cursor ? { cursor } : undefined}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}

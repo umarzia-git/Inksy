@@ -5,6 +5,7 @@ import { useRoom } from '../hooks/useRoom.js'
 import { SOCKET_EVENTS } from '../utils/socketEvents.js'
 import RoomCodeShare from '../components/lobby/RoomCodeShare.jsx'
 import PlayerList from '../components/lobby/PlayerList.jsx'
+import { WORD_CATEGORIES } from '../utils/constants.js'
 
 function LobbyPage() {
   const { code } = useParams()
@@ -23,6 +24,14 @@ function LobbyPage() {
     socket.on('player:joined', handleRoomUpdate)
     socket.on('player:left', handleRoomUpdate)
     socket.on(SOCKET_EVENTS.GAME_START, handleGameStart)
+
+    // Listeners above only catch broadcasts that arrive after this point — if a
+    // player joined in the moment between this client's own join/create and
+    // this effect running, that broadcast is already missed. Pulling the
+    // current player list directly closes that gap.
+    socket.emit('room:sync', { roomCode: code }, (res) => {
+      if (res?.room) dispatch({ type: 'SET_PLAYERS', players: res.room.players })
+    })
 
     return () => {
       socket.off('player:joined', handleRoomUpdate)
@@ -43,7 +52,8 @@ function LobbyPage() {
   }
 
   const isHost = state.self.playerId === state.players.find((p) => p.is_host)?.player_id
-  const canStart = isHost && state.players.length >= 2
+  const connectedPlayerCount = state.players.filter((p) => p.connected && !p.is_spectator).length
+  const canStart = isHost && connectedPlayerCount >= 2
 
   return (
     <div className="flex min-h-screen flex-col items-center gap-8 px-4 py-12">
@@ -61,6 +71,13 @@ function LobbyPage() {
           <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ink-text/70 capitalize">
             {state.settings.difficulty}
           </span>
+          {state.settings.categories && (
+            <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ink-text/70">
+              {state.settings.categories.length === WORD_CATEGORIES.length
+                ? 'All Categories'
+                : `${state.settings.categories.length} ${state.settings.categories.length === 1 ? 'Category' : 'Categories'}`}
+            </span>
+          )}
         </div>
       )}
 

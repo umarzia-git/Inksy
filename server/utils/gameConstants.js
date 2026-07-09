@@ -14,3 +14,22 @@ export const HINT_1_FRACTION = 0.6
 export const HINT_2_FRACTION = 0.7
 
 export const DRAWER_DISCONNECT_SKIP_MS = 15000
+
+// Selectable in Create Room's category chips. Must match the `category`
+// values used in server/db/seed/words.json exactly (e.g. "school" not
+// "school items" — the chip label is friendlier than the underlying slug).
+export const WORD_CATEGORIES = [
+  'animals',
+  'food',
+  'sports',
+  'countries',
+  'school',
+  'car brands',
+  'movies',
+  'music',
+  'clothing',
+  'technology',
+  'superheroes',
+  'jobs',
+  'nature',
+]

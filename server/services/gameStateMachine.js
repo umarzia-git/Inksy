@@ -86,12 +86,19 @@ function startRoundTimerBroadcast(io, roomCode, turnEndsAt) {
 
 export async function startGame(io, roomCode) {
   const room = await Room.findOne({ room_code: roomCode })
-  if (!room || (room.status !== 'lobby' && room.status !== 'game_end') || room.players.length < 2) return
+  if (!room || (room.status !== 'lobby' && room.status !== 'game_end')) return
+
+  // Only players still actually connected get a turn — a player who
+  // disconnected while sitting in the lobby (tab closed, network drop) but
+  // hasn't been removed yet shouldn't become "the drawer" for a turn nobody
+  // can ever complete.
+  const eligiblePlayerIds = room.players.filter((p) => !p.is_spectator && p.connected).map((p) => p.player_id)
+  if (eligiblePlayerIds.length < 2) return
 
   room.status = 'word_select'
   room.game_state.round_number = 1
   room.game_state.total_rounds = room.settings.rounds
-  room.game_state.draw_order = shuffle(room.players.filter((p) => !p.is_spectator).map((p) => p.player_id))
+  room.game_state.draw_order = shuffle(eligiblePlayerIds)
   room.game_state.turn_index = 0
   await room.save()
 
@@ -109,7 +116,12 @@ export async function startTurn(io, roomCode) {
 
   room.status = 'word_select'
   room.game_state.current_drawer_player_id = drawerId
-  room.game_state.word_choices = await pickWordChoices(room.settings.difficulty, room.game_state.used_words, room.custom_words)
+  room.game_state.word_choices = await pickWordChoices(
+    room.settings.difficulty,
+    room.game_state.used_words,
+    room.custom_words,
+    room.settings.categories,
+  )
   room.game_state.used_words = [...room.game_state.used_words, ...room.game_state.word_choices]
   room.game_state.current_word = null
   room.game_state.word_length = 0
