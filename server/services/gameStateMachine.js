@@ -1,7 +1,7 @@
 import { Room } from '../models/Room.js'
 import { SOCKET_EVENTS } from '../utils/socketEvents.js'
 import { pickWordChoices } from './wordService.js'
-import { calculateGuessPoints, calculateDrawerBonus } from './scoringService.js'
+import { calculateGuessPoints, calculateDrawerBonus, rankPlayers } from './scoringService.js'
 import { recordFinishedGame } from '../db/queries/gamesQueries.js'
 import { setRoomTimer, setRoomInterval, clearRoomTimer, clearAllRoomTimers } from './timerService.js'
 import { logger } from '../utils/logger.js'
@@ -51,16 +51,27 @@ function emitToPlayer(io, playerId, event, payload) {
 }
 
 function publicPlayers(room) {
-  return room.players.map((p) => ({
-    player_id: p.player_id,
-    nickname: p.nickname,
-    avatar: p.avatar,
-    score: p.score,
-    is_host: p.is_host,
-    connected: p.connected,
-    status: p.status,
-    is_spectator: p.is_spectator,
-  }))
+  const ranks = rankPlayers(room.players)
+  const rankCounts = {}
+  for (const r of ranks.values()) rankCounts[r] = (rankCounts[r] || 0) + 1
+
+  return room.players.map((p) => {
+    const rank = ranks.get(p.player_id)
+    return {
+      player_id: p.player_id,
+      nickname: p.nickname,
+      avatar: p.avatar,
+      score: p.score,
+      is_host: p.is_host,
+      connected: p.connected,
+      status: p.status,
+      is_spectator: p.is_spectator,
+      // Tie-aware placement — derived from hidden stats (see rankPlayers),
+      // never the raw guess-count/guess-time numbers themselves.
+      rank,
+      tied: rankCounts[rank] > 1,
+    }
+  })
 }
 
 async function updateSocketSpectatorFlags(io, roomCode, playerIds, isSpectator) {
@@ -241,7 +252,10 @@ export async function submitGuess(io, roomCode, playerId, message) {
   if (isCorrectGuess) {
     const rank = room.game_state.correct_guessers.length + 1
     const points = calculateGuessPoints(rank)
+    const guessTimeMs = Date.now() - new Date(room.game_state.turn_started_at).getTime()
     player.score += points
+    player.correct_guesses_count += 1
+    player.total_guess_time_ms += Math.max(0, guessTimeMs)
     player.status = 'guessed'
     room.game_state.correct_guessers.push(playerId)
     room.chat_log.push({ player_id: playerId, nickname: player.nickname, message: 'guessed it!', is_correct_guess: true })
@@ -335,11 +349,18 @@ async function endGame(io, roomCode) {
   room.status = 'game_end'
   await room.save()
 
-  const winner = [...room.players].sort((a, b) => b.score - a.score)[0]
+  // Everyone sharing rank 1 among actual competitors (not spectators) is a
+  // winner — a tie for first means multiple winners, not an arbitrary pick.
+  const ranks = rankPlayers(room.players)
+  const competitors = room.players.filter((p) => !p.is_spectator)
+  const topRank = competitors.length > 0 ? Math.min(...competitors.map((p) => ranks.get(p.player_id))) : null
+  const winners = competitors
+    .filter((p) => ranks.get(p.player_id) === topRank)
+    .map((p) => ({ playerId: p.player_id, nickname: p.nickname, avatar: p.avatar, score: p.score }))
 
   io.to(roomCode).emit(SOCKET_EVENTS.GAME_END, {
     players: publicPlayers(room),
-    winner: winner && { playerId: winner.player_id, nickname: winner.nickname, avatar: winner.avatar, score: winner.score },
+    winners,
   })
 
   try {
@@ -347,7 +368,7 @@ async function endGame(io, roomCode) {
       roomCode,
       startedAt: room.created_at,
       endedAt: new Date(),
-      winnerNickname: winner?.nickname || null,
+      winnerNickname: winners.map((w) => w.nickname).join(', ') || null,
       players: room.players,
     })
   } catch (err) {
@@ -366,6 +387,8 @@ export async function rematch(io, roomCode) {
     p.score = 0
     p.status = 'waiting'
     p.is_spectator = false
+    p.correct_guesses_count = 0
+    p.total_guess_time_ms = 0
   }
   room.status = 'lobby'
   await room.save()

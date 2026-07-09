@@ -15,6 +15,11 @@ const playerSchema = new Schema(
     disconnected_at: { type: Date, default: null },
     status: { type: String, enum: ['waiting', 'drawing', 'guessed', 'choosing', 'spectating'], default: 'waiting' },
     is_spectator: { type: Boolean, default: false },
+    // Tiebreak-only stats — never sent to clients directly (see publicPlayers
+    // in gameStateMachine.js, which derives a tie-aware `rank` from these
+    // instead of exposing the raw numbers).
+    correct_guesses_count: { type: Number, default: 0 },
+    total_guess_time_ms: { type: Number, default: 0 },
   },
   { _id: false },
 )

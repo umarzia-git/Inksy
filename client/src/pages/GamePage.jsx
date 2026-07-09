@@ -239,7 +239,7 @@ function GamePage() {
       {game.phase === 'game_end' && (
         <WinnerScreen
           players={state.players}
-          winner={game.winner}
+          winners={game.winners}
           isHost={isHost}
           onRematch={game.startGame}
           onLeave={handleLeave}

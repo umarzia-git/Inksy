@@ -12,7 +12,7 @@ const initialState = {
   ownWord: null, // only set on the drawer's own client
   hasGuessedCorrectly: false,
   lastRoundWord: null,
-  winner: null,
+  winners: [],
   chatMessages: [],
   reactions: [],
   lastCorrectGuess: null, // { playerId, id } — id makes every event unique so a UI flash can retrigger
@@ -60,7 +60,7 @@ function reducer(state, action) {
     case 'ROUND_END':
       return { ...state, phase: 'round_end', lastRoundWord: action.payload.word, ownWord: null, wordChoices: null }
     case 'GAME_END':
-      return { ...state, phase: 'game_end', winner: action.payload.winner }
+      return { ...state, phase: 'game_end', winners: action.payload.winners || [] }
     case 'REACTION':
       return { ...state, reactions: [...state.reactions, { id: action.id, emoji: action.payload.emoji }] }
     case 'REACTION_EXPIRE':
