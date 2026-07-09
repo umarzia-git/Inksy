@@ -54,8 +54,6 @@ It's built as a full-stack real-time app: a server-authoritative game state mach
 
 ## Screenshots
 
->| Home Screen | Game Screen | Winner Screen |
-|-------------|-------------|---------------|
 | Home Screen | Lobby Screen |
 |-------------|--------------|
 | ![Home](screenshots/homescreen.png) | ![Lobby](screenshots/lobby.png) |
